@@ -69,11 +69,11 @@
     /* width: 100vw; */
     height: 100vh;
   }
-  .auth-content{
+  #auth-content{
     height: 100%;
     width: 100%;
   }
-  .auth-content-left{
+  #auth-content-left{
     height: 100%;
     width: 100%;
     background-image: url("/images/bg-auth.png");

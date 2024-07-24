@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import AsideAdmin from "./aside";
-import Header from "./header";
+import AsideAdmin from "./dashboard/componensts/aside";
+import Header from "./dashboard/componensts/header";
 
 const font = Poppins({ 
   subsets: ['latin' , 'latin-ext'],
@@ -22,14 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`flex bg-background_body ${font.className}`}>
-        <AsideAdmin />
-        <section className="w-full px-3">
-          <Header/>
-          <main>
-            {children}
-          </main>
-        </section>
+      <body className={font.className }>
+        {children}
       </body>
     </html>
   );
