@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import AsideAdmin from "./dashboard/componensts/aside";
-import Header from "./dashboard/componensts/header";
 
 const font = Poppins({ 
   subsets: ['latin' , 'latin-ext'],

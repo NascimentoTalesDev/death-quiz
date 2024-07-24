@@ -9,7 +9,7 @@ type HeaderGenericProps =  {
 
 export function HeaderComponent ({ children, id, className }: HeaderGenericProps ) {
     return(
-        <header id={id} className={cn("py-8", className)}>{children}</header>
+        <header id={id} className={cn("pt-8 px-3 pb-4", className)}>{children}</header>
     )
 }
 

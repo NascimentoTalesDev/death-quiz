@@ -52,8 +52,8 @@ const Auth = () => {
 },[])
 
   return (
-    <div className="w-full">
-      <div className="mb-4">
+    <div className="w-full flex flex-col gap-4">
+      <div className="">
         <h2 className="text-primary text-3xl font-bold">{variant === "login" ? "Entre na sua conta" : "Registe-se agora" }</h2>
         <span className="text-primary text-sm font-bold">com seu {variant === "login" ? "email registrado" : "melhor email" }</span>
       </div>
@@ -133,9 +133,9 @@ const Auth = () => {
                 <span>ou</span>
                 <div className="bg-gray-300 h-[1px] w-full"></div>
             </div>
-            <GoogleAuth />
         </form>
       </Form>
+      <GoogleAuth />
     </div>
   );
 };

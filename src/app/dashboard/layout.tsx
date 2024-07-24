@@ -1,17 +1,22 @@
 import { PropsWithChildren } from "react";
-import AsideAdmin from "./componensts/aside";
-import Header from "./componensts/header";
+import AsideAdmin from "./components/aside";
+import Header from "./components/header";
 
 export default function LayoutDashboard({ children}: PropsWithChildren) {
   return (
-      <section className={`flex bg-background_body`}>
+      <section className={`flex bg-background_body h-full max-h-screen overflow-hidden`}>
+        
         <AsideAdmin />
-        <section className="w-full px-3">
+        
+        <section className="flex flex-col w-full">
           <Header />
-          <main>
+          
+          <main className="px-3 overflow-y-auto">
             {children}
           </main>
+        
         </section>
+      
       </section>
   );
 }
