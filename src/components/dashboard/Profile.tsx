@@ -11,37 +11,48 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import AvatarProfile from "./Avatar"
 
-export function SheetDemo() {
+interface ProfileProps{
+    user: {
+        name: string,
+        email: string,
+        image: string,
+    }
+}
+
+export function Profile({ user }: ProfileProps) {    
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <div className="flex cursor-pointer gap-2 items-center">
+            <AvatarProfile user={user} />
+            <span className="text-sm">{user?.name}</span>
+        </div>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
+          <SheetTitle>Editar Perfil</SheetTitle>
           <SheetDescription>
-            Make changes to your profile here. Click save when you're done.
-          </SheetDescription>
+          Faça alterações em seu perfil aqui. Clique em salvar quando terminar.          </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
-              Name
+              Nome
             </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            <Input id="name" value={user?.name} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
-              Username
+              Email
             </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
+            <Input id="email" value={user?.email} className="col-span-3" />
           </div>
         </div>
         <SheetFooter>
           <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit">Salvar</Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>

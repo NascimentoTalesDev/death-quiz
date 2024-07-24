@@ -3,11 +3,10 @@ import { HeaderComponent, HeaderContainer, HeaderFlexItem, HeaderItem } from "./
 import SearchQuiz from "@/components/SearchQuiz";
 import { useSession } from "next-auth/react";
 import { auth } from "@/app/services/auth";
+import { Profile } from "@/components/dashboard/Profile";
 
 const Header = async() => {
-
     const session = await auth()
-    console.log(session?.user?.name);
 
     return (
         <HeaderComponent id="header-component" >
@@ -17,7 +16,7 @@ const Header = async() => {
                         <SearchQuiz />
                     </HeaderItem>
                     <HeaderItem className="w-[200px]">
-                        {session?.user?.name}
+                        <Profile user={session?.user} />
                     </HeaderItem>
                 </HeaderFlexItem>
             </HeaderContainer>
