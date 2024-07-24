@@ -1,12 +1,14 @@
 import React from "react";
 import { HeaderComponent, HeaderContainer, HeaderFlexItem, HeaderItem } from "./components";
-import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import SearchQuiz from "@/components/SearchQuiz";
+import { useSession } from "next-auth/react";
+import { auth } from "@/app/services/auth";
 
+const Header = async() => {
 
-const Header = () => {
+    const session = await auth()
+    console.log(session?.user?.name);
+
     return (
         <HeaderComponent id="header-component" >
             <HeaderContainer id="header-container">
@@ -15,7 +17,7 @@ const Header = () => {
                         <SearchQuiz />
                     </HeaderItem>
                     <HeaderItem className="w-[200px]">
-                        Name
+                        {session?.user?.name}
                     </HeaderItem>
                 </HeaderFlexItem>
             </HeaderContainer>
