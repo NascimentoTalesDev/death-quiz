@@ -20,7 +20,7 @@ type AsideAdminLinkProps =  {
 
 export function AsideAdminComponent ({ children, id, className }: AsideAdminGenericProps ) {
     return(
-        <aside id={id} className={cn("w-[280px] p-5 bg-background_body h-full  text-white", className)}>{children}</aside>
+        <aside id={id} className={cn("w-[280px] p-5  h-full  text-white", className)}>{children}</aside>
     )
 }
 

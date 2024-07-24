@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`flex ${font.className}`}>
+      <body className={`flex bg-background_body ${font.className}`}>
         <AsideAdmin />
         <section className="w-full px-3">
           <Header/>
