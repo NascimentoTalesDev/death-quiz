@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardTitle,
@@ -8,12 +8,24 @@ import { Quiz } from "@/types/quiz";
 import { Button } from "@/components/ui/button";
 import {  Heart } from "lucide-react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { useQuestionModal } from "@/hooks/useQuestionModal";
+import { GameController } from "@/core/controllers/GameController";
 
 interface QuizProps{
   quiz: Quiz;
 }
 
-const QuizIdCard = ({ quiz } : QuizProps ) => {    
+const QuizIdCard = ({ quiz } : QuizProps ) => {
+  const questionModal = useQuestionModal()
+
+  const init = () => {
+    const gameController = new GameController(quiz.questions.length)
+    const res = gameController.start()
+    if (res) {
+      questionModal.onOpen(quiz)
+    }
+  }
+
   return (
     <div className="grid grid-cols-2 gap-3">
       <div className="flex flex-col gap-3">
@@ -43,7 +55,8 @@ const QuizIdCard = ({ quiz } : QuizProps ) => {
         <div>Nível de dificuldade: 2</div>
         <div>Pontos: 30</div>
         <div>Categoria: Séries </div>
-        <Button className="w-fit mt-3">Start Quiz</Button>
+        {/* <Button onClick={() => {questionModal.onOpen(quiz)}} className="w-fit mt-3">Start Quiz</Button> */}
+        <Button onClick={init} className="w-fit mt-3">Start Quiz</Button>
       </div>
     </div>
   );

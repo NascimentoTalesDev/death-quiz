@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 import AsideAdmin from "./components/aside";
 import Header from "./components/header";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import QuestionModalProvider from "@/providers/QuestionModalProvider";
 
 export default function LayoutDashboard({ children }: PropsWithChildren) {
   return (
@@ -11,6 +12,7 @@ export default function LayoutDashboard({ children }: PropsWithChildren) {
       enableSystem
       disableTransitionOnChange
     >
+      <QuestionModalProvider />
       <section
         className={`flex overflow-y-auto md:overflow-hidden no-scroll flex-col md:flex-row bg-background_body dark:bg-background h-full md:max-h-screen`}
       >

@@ -21,6 +21,7 @@ const config = {
       colors: {
         background_body: "#FBF9F9",
         my_text: "#696F79",
+        background_rgba: "rgba(0,0,0, 0.7)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
