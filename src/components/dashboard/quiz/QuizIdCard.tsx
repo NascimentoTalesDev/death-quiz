@@ -27,7 +27,7 @@ const QuizIdCard = ({ quiz } : QuizProps ) => {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div className="flex flex-col gap-3">
         <Card className="relative h-[250px] rounded-xl overflow-hidden">
             <Image src={quiz?.image} alt="" objectFit="cover" fill />
@@ -55,7 +55,6 @@ const QuizIdCard = ({ quiz } : QuizProps ) => {
         <div>Nível de dificuldade: 2</div>
         <div>Pontos: 30</div>
         <div>Categoria: Séries </div>
-        {/* <Button onClick={() => {questionModal.onOpen(quiz)}} className="w-fit mt-3">Start Quiz</Button> */}
         <Button onClick={init} className="w-fit mt-3">Start Quiz</Button>
       </div>
     </div>

@@ -17,7 +17,6 @@ export class GameController {
     }
     
     checkAnswer(answer: string, correctAnswer: string){
-        console.log("checkAnswer");
         if (answer == correctAnswer) {
             this.totalPoints++;
             return true;
