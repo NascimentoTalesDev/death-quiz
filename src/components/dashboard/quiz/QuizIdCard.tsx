@@ -19,10 +19,10 @@ const QuizIdCard = ({ quiz } : QuizProps ) => {
   const questionModal = useQuestionModal()
 
   const init = () => {
-    const gameController = new GameController(quiz.questions.length)
+    const gameController = new GameController(quiz.questions.length as number, 0)
     const res = gameController.start()
     if (res) {
-      questionModal.onOpen(quiz)
+      questionModal.onOpen(quiz, gameController)
     }
   }
 
