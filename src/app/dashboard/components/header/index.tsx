@@ -15,7 +15,7 @@ const Header = async() => {
                     <HeaderItem className="grow">
                         <SearchQuiz />
                     </HeaderItem>
-                    <HeaderItem className="w-[200px]">
+                    <HeaderItem className="w-[200px] hidden md:block">
                         <Profile user={session?.user} />
                     </HeaderItem>
                 </HeaderFlexItem>

@@ -20,7 +20,7 @@ type AsideAdminLinkProps =  {
 
 export function AsideAdminComponent ({ children, id, className }: AsideAdminGenericProps ) {
     return(
-        <aside id={id} className={cn("w-[280px] p-5  h-full  text-white", className)}>{children}</aside>
+        <aside id={id} className={cn("w-full md:w-[280px]  p-3 md:p-5  md:h-full  text-white", className)}>{children}</aside>
     )
 }
 
@@ -44,7 +44,7 @@ export function AsideItemBetween ({ children, id, className }: AsideAdminGeneric
 
 export function AsideItemCol ({ children, id, className }: AsideAdminGenericProps ) {
     return(
-        <ul id={id} className={cn("flex flex-col", className)}>{children}</ul>
+        <ul id={id} className={cn("flex flex-row gap-2 md:gap-0  md:flex-col ", className)}>{children}</ul>
     )
 }
 
