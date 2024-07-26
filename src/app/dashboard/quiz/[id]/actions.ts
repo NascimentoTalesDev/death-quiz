@@ -4,7 +4,7 @@ import { baseUrl } from "@/utils/base-url"
 
 export default async function getQuizById(id: string){
     
-    const res = await fetch(`${baseUrl}/quizId?id=2`, {
+    const res = await fetch(`${baseUrl}/quizId?id=${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
