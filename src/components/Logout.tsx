@@ -11,7 +11,7 @@ export const Logout = () => {
   }
 
   return (
-    <button variant={"ghost"} onClick={logOut} className='w-full flex items-center p-3 transition-all rounded-lg justify-center gap-2 logout hover:bg-gray-200 hover:justify-start'>
+    <button onClick={logOut} className='w-full flex items-center p-3 transition-all rounded-lg justify-center gap-2 logout hover:bg-gray-200 hover:justify-start'>
         <ArrowBigLeftDash className='text-primary' /> <span className='text-my_text'>Logout</span>
     </button>
   )

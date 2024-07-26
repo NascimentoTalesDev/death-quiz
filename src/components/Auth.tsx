@@ -26,14 +26,8 @@ const formSchema = z.object({
   }),
 });
 
-const formSchemaRegister = z.object({
-  name: z.string().min(1, {
-    message: "Por favor, digite seu nome.",
-  }),
-});
-
 const Auth = () => {
-    const [variant, setVariant] = useState("login");
+  const [variant, setVariant] = useState("login");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,14 +42,20 @@ const Auth = () => {
   };
 
   const toggleVariant = useCallback(() => {
-    setVariant((currentVariant) => currentVariant === 'login' ? "register" : "login")
-},[])
+    setVariant((currentVariant) =>
+      currentVariant === "login" ? "register" : "login"
+    );
+  }, []);
 
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="">
-        <h2 className="text-primary text-3xl font-bold">{variant === "login" ? "Entre na sua conta" : "Registe-se agora" }</h2>
-        <span className="text-primary text-sm font-bold">com seu {variant === "login" ? "email registrado" : "melhor email" }</span>
+        <h2 className="text-primary text-3xl font-bold">
+          {variant === "login" ? "Entre na sua conta" : "Registe-se agora"}
+        </h2>
+        <span className="text-primary text-sm font-bold">
+          com seu {variant === "login" ? "email registrado" : "melhor email"}
+        </span>
       </div>
 
       <Form {...form}>
@@ -63,25 +63,6 @@ const Auth = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col gap-3"
         >
-            {variant === "register" && (
-                <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nome:</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={isSubmitting}
-                        placeholder="Digite seu nome"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
           <FormField
             control={form.control}
             name="email"
@@ -118,21 +99,31 @@ const Auth = () => {
           />
           <div className="flex items-center gap-x-2">
             <Button
-                className="w-full"
+              className="w-full"
               type={"submit"}
               variant={"default"}
               disabled={!isValid || isSubmitting}
             >
-               {variant === "login" ? "Login" : "Registrar" }
+              {variant === "login" ? "Login" : "Registrar"}
             </Button>
           </div>
-            <CheckboxItem text="Manter-me conectado" />
-            <p className="text-[12px]">{variant === "login" ? "Ainda não tem uma conta?" : "Já tem uma conta?" }<span className="text-primary cursor-pointer ml-2" onClick={toggleVariant}>Clique aqui.</span></p>
-            <div className="flex items-center text-[12px] gap-5">
-                <div className="bg-gray-300 h-[1px] w-full"></div>
-                <span>ou</span>
-                <div className="bg-gray-300 h-[1px] w-full"></div>
-            </div>
+          <CheckboxItem text="Manter-me conectado" />
+          <p className="text-[12px]">
+            {variant === "login"
+              ? "Ainda não tem uma conta?"
+              : "Já tem uma conta?"}
+            <span
+              className="text-primary cursor-pointer ml-2"
+              onClick={toggleVariant}
+            >
+              Clique aqui.
+            </span>
+          </p>
+          <div className="flex items-center text-[12px] gap-5">
+            <div className="bg-gray-300 h-[1px] w-full"></div>
+            <span>ou</span>
+            <div className="bg-gray-300 h-[1px] w-full"></div>
+          </div>
         </form>
       </Form>
       <GoogleAuth />

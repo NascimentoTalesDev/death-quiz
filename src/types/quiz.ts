@@ -1,19 +1,22 @@
 export type Quiz = {
-    id: number,
-    image: string,
-    title: string,
-    questions: [
+  id: number;
+  image: string;
+  title: string;
+  createdAt: Date;
+  updatedAt: Date;
+  questions: [
+    {
+      id: number;
+      question: string;
+      correctAnswer: string;
+      quizId: number | null;
+      answers: [
         {
-            id: string
-            question: string
-            answers: [
-                {
-                    id: number,
-                    answer: string,
-                    questionId: number
-                } 
-            ],
-            correctAnswer: string
+          id: number;
+          answer: string;
+          questionId: number;
         }
-    ] 
-}
+      ];
+    }
+  ];
+};

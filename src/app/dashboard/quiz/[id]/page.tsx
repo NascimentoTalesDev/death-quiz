@@ -1,16 +1,13 @@
 // "use client";
 
 import Back from '@/components/dashboard/Back'
-import QuizIdCard from '@/components/dashboard/quiz/QuizIdCard';
-import { QuizController } from '@/core/controllers/QuizController';
 import { Quiz } from '@/types/quiz';
-import { useParams } from 'next/navigation'
 import React from 'react'
+import getQuizById from './actions';
+import QuizIdCard from '@/components/dashboard/quiz/QuizIdCard';
 
 const QuizIdPage = async({ params}: { params : { id : string} }) => {
-  const id = parseInt(params?.id)
-  const quizController = new QuizController();
-  const quiz: Quiz  = await quizController.findOne(id)
+  const quiz: Quiz  = await getQuizById(params?.id)
     
   return (
     <div className='bg-white dark:bg-background p-5 rounded-md'>

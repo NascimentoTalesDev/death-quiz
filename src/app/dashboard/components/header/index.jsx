@@ -16,7 +16,7 @@ const Header = async() => {
                         <SearchQuiz />
                     </HeaderItem>
                     <HeaderItem className="w-[200px] hidden md:block">
-                        <Profile user={session?.user} />
+                        {session && <Profile user={session.user} />}
                     </HeaderItem>
                 </HeaderFlexItem>
             </HeaderContainer>

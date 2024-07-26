@@ -1,4 +1,5 @@
-import { QuizRepository } from "../repositories/QuizRepository";
+import { Quiz } from "@/types/quiz";
+import { QuizRepository } from "../repositories/prisma/QuizRepository";
 
 export class QuizService{
     private  quizRepository: QuizRepository;
@@ -8,33 +9,12 @@ export class QuizService{
     }
 
     async getAll(){
-         const AllQuiz = await this.quizRepository.quiz.findMany({
-            include: {
-                questions: {
-                    include: {
-                        answers: true
-                    }
-                }
-            }
-         })   
-            
-        return AllQuiz;
+        const allQuizzes = await this.quizRepository.getAll() 
+        return allQuizzes;
     }
 
     async findOne(id: number){
-        const quiz = await this.quizRepository.quiz.findUnique({
-            where: {
-                id 
-            },
-            include: {
-                questions: {
-                    include: {
-                        answers: true
-                    }
-                }
-            }
-         })  
-            
+        const quiz = await this.quizRepository.findOne(id) 
         return quiz;
     }
 }
