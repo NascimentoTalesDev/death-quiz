@@ -7,7 +7,7 @@ import { SquareArrowLeft } from "lucide-react";
 
 const Back = () => {
   const path = useRouter();
-  return <Button variant={"link"} onClick={path.back}><SquareArrowLeft /> Voltar</Button>;
+  return <Button className="pl-0" variant={"link"} onClick={path.back}><SquareArrowLeft /> Voltar</Button>;
 };
 
 export default Back;
