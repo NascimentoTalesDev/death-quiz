@@ -23,7 +23,6 @@ const QuizIdCard = ({ quiz } : QuizProps ) => {
   const init = () => {
     const gameController = new GameController(quiz.questions.length as number, 0)
     const res = gameController.start()
-    console.log(quiz);
     
     if (res) {
       questionModal.onOpen(quiz, gameController)
