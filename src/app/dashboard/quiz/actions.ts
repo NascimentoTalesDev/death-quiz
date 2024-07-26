@@ -1,7 +1,9 @@
 "use server"
 
+import { baseUrl } from "@/utils/base-url"
+
 export default async function getAllQuizzes(){
-    const res = await fetch("http://localhost:3000/api/quiz", {
+    const res = await fetch(`${baseUrl}/quiz`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
