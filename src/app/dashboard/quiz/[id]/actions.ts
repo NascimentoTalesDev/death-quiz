@@ -1,7 +1,6 @@
 "use server"
 
 import { baseUrl } from "@/utils/base-url"
-import axios from "axios"
 
 export default async function getQuizById(id: string){
     
