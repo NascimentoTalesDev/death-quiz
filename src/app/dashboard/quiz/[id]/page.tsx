@@ -1,10 +1,5 @@
-// "use client";
-
 import Back from '@/components/dashboard/Back'
-import { Quiz } from '@/types/quiz';
 import React from 'react'
-import getQuizById from './actions';
-import QuizIdCard from '@/components/dashboard/quiz/QuizIdCard';
 
 const QuizIdPage = async({ params}: { params : { id : string} }) => {
     
