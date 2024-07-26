@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client"
+
+import React from "react";
 import {
   Card,
   CardTitle,
@@ -21,6 +23,8 @@ const QuizIdCard = ({ quiz } : QuizProps ) => {
   const init = () => {
     const gameController = new GameController(quiz.questions.length as number, 0)
     const res = gameController.start()
+    console.log(quiz);
+    
     if (res) {
       questionModal.onOpen(quiz, gameController)
     }
@@ -30,7 +34,7 @@ const QuizIdCard = ({ quiz } : QuizProps ) => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div className="flex flex-col gap-3">
         <Card className="relative h-[250px] rounded-xl overflow-hidden">
-            <Image src={quiz?.image} alt="" objectFit="cover" fill />
+            <Image src={`/images/${quiz?.image}`} alt="" objectFit="cover" fill />
           <div className="absolute flex flex-col p-5 justify-between w-full h-full">
             <div className="bg-white dark:bg-gray-500 text-sm w-fit p-1 rounded-md">
               <span>{quiz?.questions?.length} quest.</span>

@@ -1,12 +1,18 @@
 export type Quiz = {
-    id: string,
+    id: number,
     image: string,
     title: string,
     questions: [
         {
             id: string
             question: string
-            answers: string[],
+            answers: [
+                {
+                    id: number,
+                    answer: string,
+                    questionId: number
+                } 
+            ],
             correctAnswer: string
         }
     ] 

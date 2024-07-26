@@ -14,7 +14,7 @@ const QuestionModalProvider = () => {
   const questionModal = useQuestionModal();
   const quiz = questionModal?.quiz;
   const gameController: GameController = questionModal?.gameController;
-
+    
   const [showAnswer, setShowAnswer] = useState(false);
 
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -24,7 +24,7 @@ const QuestionModalProvider = () => {
 
   if (!questionModal.isOpen) return null;
 
-  const checkAnswer = (answer: string, correctAnswer: string) => {
+  const checkAnswer = (answer: string, correctAnswer: string) => {    
     const answerConfirmation = gameController.checkAnswer(
       answer,
       correctAnswer
@@ -115,19 +115,19 @@ const QuestionModalProvider = () => {
                   {showAnswer ? (
                     <>
                       {quiz?.questions[currentQuestion]?.answers.map(
-                        (answer, idx) => (
+                        (item, idx) => (
                           <Button
-                            value={answer}
+                            value={item?.answer}
                             variant={"ghost"}
                             className={`border min-h-[55px] justify-start ${
-                              answer ===
+                                item?.answer ===
                               quiz?.questions[currentQuestion]?.correctAnswer
                                 ? "border-green-500"
                                 : "border-red-500"
                             }`}
                             key={idx}
                           >
-                            {answer}
+                            {item?.answer}
                           </Button>
                         )
                       )}
@@ -135,22 +135,22 @@ const QuestionModalProvider = () => {
                   ) : (
                     <>
                       {quiz?.questions[currentQuestion]?.answers.map(
-                        (answer, idx) => (
+                        (item, idx) => (
                           <Button
                             onClick={() =>
                               checkAnswer(
-                                answer,
+                                item?.answer,
                                 quiz?.questions[currentQuestion]?.correctAnswer
                               )
                             }
-                            value={answer}
+                            value={item.answer}
                             variant={"ghost"}
                             className={`border border-gray-300 min-h-[55px] justify-start ${
                               showAnswer ? "border-red-500" : ""
                             }`}
                             key={idx}
                           >
-                            {answer}
+                            {item?.answer}
                           </Button>
                         )
                       )}

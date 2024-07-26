@@ -8,7 +8,13 @@ export class QuizController {
     this.quizService = new QuizService()
   }
 
-  findOne(id: string){
-    return this.quizService.findOne(id);
+  async getAll(){
+      let item = await this.quizService.getAll();        
+      return item 
+  }
+
+  async findOne(id: number){
+    let item = await this.quizService.findOne(id);
+    return item
   }
 }

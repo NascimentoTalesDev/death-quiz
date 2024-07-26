@@ -15,7 +15,7 @@ const QuizCard = ({ quiz } : QuizProps  ) => {
   return (
     <Link href={`/dashboard/quiz/${quiz?.id}`}>
       <Card className="relative h-[250px] rounded-xl overflow-hidden">
-          <Image src={quiz?.image} alt="" objectFit="cover" fill />
+          <Image src={`/images/${quiz?.image}`} alt="" objectFit="cover" fill />
         <div className="absolute flex flex-col p-5 justify-between w-full h-full">
           <div className="bg-white dark:bg-gray-500 text-sm w-fit p-1 rounded-md">
             <span>{quiz?.questions?.length} quest.</span>
