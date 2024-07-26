@@ -53,7 +53,6 @@ const QuestionModalProvider = () => {
     } else {
       confetti.onOpen();
       setEndGame(true);
-      console.log("FIM");
     }
   };
 

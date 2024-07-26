@@ -10,7 +10,6 @@ export class GameController {
 
     start(){
         if (this.totalQuestion > 0) {
-            console.log("start", this.totalQuestion);
             return true
         }
         return false
