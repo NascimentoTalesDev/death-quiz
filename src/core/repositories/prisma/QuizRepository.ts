@@ -17,7 +17,7 @@ export class QuizRepository  {
                 }
             }
          })  
-            
+                 
         return allQuiz;
     }
     

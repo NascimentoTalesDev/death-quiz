@@ -1,6 +1,4 @@
-import { Quiz } from "@/types/quiz";
 import { QuizService } from "../services/QuizService";
-import { NextRequest, NextResponse } from "next/server";
 
 export class QuizController {
   private quizService: QuizService;

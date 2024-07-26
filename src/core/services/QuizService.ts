@@ -1,4 +1,3 @@
-import { Quiz } from "@/types/quiz";
 import { QuizRepository } from "../repositories/prisma/QuizRepository";
 
 export class QuizService{

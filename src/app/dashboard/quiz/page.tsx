@@ -5,6 +5,7 @@ import getAllQuizzes from './actions'
 
 const QuizPage = async() => {
   const quizzes = await getAllQuizzes()
+  console.log("QuizPAge", quizzes);
 
   return (
     <div className='bg-white dark:bg-background p-5 rounded-md'>
