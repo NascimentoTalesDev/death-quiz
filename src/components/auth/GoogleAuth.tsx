@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from 'react'
-import { Button } from './ui/button'
-import { GoogleIcon } from './icons/GoogleIcon'
+import { Button } from '../ui/button'
+import { GoogleIcon } from '../icons/GoogleIcon'
 import { signIn } from "next-auth/react";
 
 export const GoogleAuth = () => {

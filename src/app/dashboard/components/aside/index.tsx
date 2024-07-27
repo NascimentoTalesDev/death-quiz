@@ -1,7 +1,7 @@
 import React from "react";
 import { AsideAdminComponent, AsideAdminContainer, AsideAdminItem, AsideItemBetween } from "./components";
 import GroupAdminLink from "./group-admin-link";
-import { Logout } from "@/components/Logout";
+import { LogOutButton } from "@/components/auth/LogOutButton";
 import Logo from "@/components/LogoDashboard";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -22,7 +22,7 @@ const AsideAdmin = () => {
                         
                         <AsideAdminItem id="logout-container" className="mb-5 hidden md:block">
                             <ThemeToggle />
-                            <Logout />
+                            <LogOutButton />
                         </AsideAdminItem>
                     </AsideItemBetween>
                 </AsideAdminItem>

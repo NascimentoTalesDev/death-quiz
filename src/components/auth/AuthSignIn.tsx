@@ -11,14 +11,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import React, { useCallback, useState } from "react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { CheckboxItem } from "./CheckboxItem";
-import { GoogleAuth } from "./GoogleAuth";
+import React from "react";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { CheckboxItem } from "../CheckboxItem";
 
 const formSchema = z.object({
-  email: z.string().min(1, {
+  email: z.string().email().min(1, {
     message: "Por favor, digite seu email.",
   }),
   password: z.string().min(1, {
@@ -26,9 +25,7 @@ const formSchema = z.object({
   }),
 });
 
-const Auth = () => {
-  const [variant, setVariant] = useState("login");
-
+const AuthSignIn = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
@@ -41,27 +38,12 @@ const Auth = () => {
     } catch (error) {}
   };
 
-  const toggleVariant = useCallback(() => {
-    setVariant((currentVariant) =>
-      currentVariant === "login" ? "register" : "login"
-    );
-  }, []);
-
   return (
-    <div className="w-full flex flex-col gap-2">
-      <div className="">
-        <h2 className="text-primary text-2xl md:text-3xl font-bold">
-          {variant === "login" ? "Entre na sua conta" : "Registe-se agora"}
-        </h2>
-        <span className="text-primary text-sm font-bold">
-          com seu {variant === "login" ? "email registrado" : "melhor email"}
-        </span>
-      </div>
-
+    <div className="w-full ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-3"
+          className="flex flex-col"
         >
           <FormField
             control={form.control}
@@ -71,12 +53,13 @@ const Auth = () => {
                 <FormLabel>Email:</FormLabel>
                 <FormControl>
                   <Input
+                    type="email"
                     disabled={isSubmitting}
                     placeholder="Digite seu email"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[12px]" />
               </FormItem>
             )}
           />
@@ -93,42 +76,25 @@ const Auth = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[12px]" />
               </FormItem>
             )}
           />
-          <div className="flex items-center gap-x-2">
+          <div className="my-3">
             <Button
               className="w-full"
               type={"submit"}
               variant={"default"}
               disabled={!isValid || isSubmitting}
             >
-              {variant === "login" ? "Login" : "Registrar"}
+              Entrar
             </Button>
           </div>
           <CheckboxItem text="Manter-me conectado" />
-          <p className="text-[12px]">
-            {variant === "login"
-              ? "Ainda não tem uma conta?"
-              : "Já tem uma conta?"}
-            <span
-              className="text-primary cursor-pointer ml-2"
-              onClick={toggleVariant}
-            >
-              Clique aqui.
-            </span>
-          </p>
-          <div className="flex items-center text-[12px] gap-5">
-            <div className="bg-gray-300 h-[1px] w-full"></div>
-            <span>ou</span>
-            <div className="bg-gray-300 h-[1px] w-full"></div>
-          </div>
         </form>
       </Form>
-      <GoogleAuth />
     </div>
   );
 };
 
-export default Auth;
+export default AuthSignIn;
