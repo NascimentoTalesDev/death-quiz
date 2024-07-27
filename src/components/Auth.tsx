@@ -48,9 +48,9 @@ const Auth = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-2">
       <div className="">
-        <h2 className="text-primary text-3xl font-bold">
+        <h2 className="text-primary text-2xl md:text-3xl font-bold">
           {variant === "login" ? "Entre na sua conta" : "Registe-se agora"}
         </h2>
         <span className="text-primary text-sm font-bold">

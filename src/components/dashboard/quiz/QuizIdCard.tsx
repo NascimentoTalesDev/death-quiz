@@ -1,14 +1,9 @@
-// "use client";
-
 import React from "react";
 import { Card, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { Quiz } from "@/types/quiz";
-import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { useQuestionModal } from "@/hooks/useQuestionModal";
-import { GameController } from "@/core/controllers/GameController";
 import Back from "../Back";
 import getQuizById from "@/app/dashboard/quiz/[id]/actions";
 import ButtonStartQuiz from "./ButtonStartQuiz";
