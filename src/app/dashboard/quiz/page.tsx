@@ -6,7 +6,7 @@ const QuizPage = async() => {
   const quizzes = await getAllQuizzes()
 
   return (
-    <div className='bg-white dark:bg-background p-5 rounded-md'>
+    <div className='bg-white dark:bg-background rounded-md'>
       <h1 className='mb-5'>QuizPage</h1>
       <QuizGroup quizzes={quizzes}/>
     </div>

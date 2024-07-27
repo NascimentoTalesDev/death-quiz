@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { GameController } from "@/core/controllers/GameController";
 import { useConfetti } from "@/hooks/useConfetti";
 import { useQuestionModal } from "@/hooks/useQuestionModal";
+import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -65,20 +66,20 @@ const QuestionModalProvider = () => {
   };
 
   return (
-    <div className="absolute flex px-4 justify-center items-center h-full w-full z-[1] bg-background_rgba backdrop-blur-sm">
+    <div className="absolute  flex px-4 justify-center items-center h-full w-full z-[1] bg-background_rgba backdrop-blur-sm">
       <div className="relative bg-gray-200 w-full max-w-[500px] border rounded-lg p-5">
         <Button
           onClick={() => {
             questionModal.onClose(), clear();
           }}
-          className="absolute top-2 right-2"
+          className="absolute top-2 right-2 dark:text-background dark:hover:text-accent-foreground"
           variant="ghost"
         >
           <X />
         </Button>
 
         <div className="text-center mb-4">
-          <h2 className="font-bold text-lg text-primary">
+          <h2 className="font-bold dark:text-background text-lg text-primary">
             {youAreDead ? (
               "Você está Morto"
             ) : (
@@ -106,11 +107,11 @@ const QuestionModalProvider = () => {
           <>
             {!endGame ? (
               <div className="flex flex-col">
-                <div className="mb-10">
+                <div className="mb-10 dark:text-background">
                   <h2>{quiz?.questions[currentQuestion]?.question}</h2>
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 dark:text-background">
                   {showAnswer ? (
                     <>
                       {quiz?.questions[currentQuestion]?.answers.map(
@@ -126,7 +127,7 @@ const QuestionModalProvider = () => {
                             }`}
                             key={idx}
                           >
-                            {item?.answer}
+                            {formatFirstWordToUpperCase(item?.answer)}
                           </Button>
                         )
                       )}

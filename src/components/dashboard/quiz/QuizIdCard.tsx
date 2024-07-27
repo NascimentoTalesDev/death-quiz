@@ -12,6 +12,7 @@ import { GameController } from "@/core/controllers/GameController";
 import Back from "../Back";
 import getQuizById from "@/app/dashboard/quiz/[id]/actions";
 import ButtonStartQuiz from "./ButtonStartQuiz";
+import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 
 interface QuizProps {
   id: string;
@@ -22,9 +23,11 @@ const QuizIdCard = async ({ id }: QuizProps) => {
 
   return (
     <>
-      <div className="flex gap-3 items-center mb-5">
+      <div className="flex flex-col md:flex-row gap-3 items-center mb-5">
         <Back />
-        <h1>{quiz?.title}</h1>
+        <div className="text-center md:text-left md:w-full">
+          <h1 className="text-xl font-bold">{formatFirstWordToUpperCase(quiz?.title)}</h1>
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="flex flex-col gap-3">
@@ -41,7 +44,7 @@ const QuizIdCard = async ({ id }: QuizProps) => {
               </div>
               <div className="backdrop-blur-sm flex text-white px-1 py-2 rounded-md">
                 <CardTitle className="text-lg font-normal">
-                  {quiz?.title}
+                  {formatFirstWordToUpperCase(quiz?.title)}
                 </CardTitle>
               </div>
             </div>
