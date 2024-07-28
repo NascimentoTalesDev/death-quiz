@@ -12,6 +12,5 @@ export default async function getQuizById(id: string){
         },
     })
     const quizzes = await res.json()    
-
     return quizzes   
 }

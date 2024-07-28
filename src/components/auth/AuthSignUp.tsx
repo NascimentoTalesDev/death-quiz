@@ -14,6 +14,8 @@ import {
 import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import signUpUser from "@/app/auth/actions";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -37,7 +39,11 @@ const AuthSignUp = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-    } catch (error) {}
+      await signUpUser(values)
+      toast.success("Usuário cadastrado com sucesso")
+    } catch (error) {
+      toast.error("Ocorreu um erro inesperado")
+    }
   };
 
   return (
