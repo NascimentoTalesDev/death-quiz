@@ -30,7 +30,7 @@ export class UserRepository  {
                 data:{
                     name,
                     email,
-                    password,
+                    password
                 }
             })
             
