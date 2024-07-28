@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import { UserService } from "../services/UserService";
 
 export class UserController {

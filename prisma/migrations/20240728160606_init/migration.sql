@@ -37,7 +37,9 @@ CREATE TABLE `users` (
     `email_verified` DATETIME(3) NULL,
     `image` VARCHAR(191) NULL,
     `phone` VARCHAR(191) NULL,
-    `instagran` VARCHAR(191) NULL,
+    `instagram` VARCHAR(191) NULL,
+    `hash` VARCHAR(191) NULL,
+    `password` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 

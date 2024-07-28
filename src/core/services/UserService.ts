@@ -20,7 +20,8 @@ export class UserService {
 
     async signUp (name: string, email: string, password: string ){
 
-        const hash = await this.bcryptAdapter.hash(password)        
+        const hash = await this.bcryptAdapter.hash(password)
+
         const user = await this.userRepository.signUp(name, email, hash)
         return user
     }

@@ -15,7 +15,7 @@ export class UserRepository  {
 
     }
 
-    async signUp (name: string, email: string, password: string ) {
+    async signUp (name: string, email: string, hash: string ) {
         try {
             const userExists = await this.prisma.user.findUnique({
                 where:{
@@ -30,7 +30,7 @@ export class UserRepository  {
                 data:{
                     name,
                     email,
-                    password
+                    hash
                 }
             })
             

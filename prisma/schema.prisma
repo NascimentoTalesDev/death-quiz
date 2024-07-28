@@ -46,6 +46,7 @@ model User {
   image         String?
   phone         String?
   instagram     String?
+  hash          String?
   password      String?
 
   accounts Account[]
