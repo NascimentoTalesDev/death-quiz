@@ -7,7 +7,7 @@ const QuizPage = async() => {
 
   return (
     <div className='bg-white dark:bg-background rounded-md'>
-      <h1 className='mb-5'>QuizPage teste</h1>
+      <h1 className='mb-5'>QuizPage</h1>
       <QuizGroup quizzes={quizzes}/>
     </div>
   )
