@@ -14,8 +14,9 @@ import {
 import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import signUpUser from "@/app/auth/actions";
+import { signUpUser } from "@/app/auth/actions";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -30,6 +31,7 @@ const formSchema = z.object({
 });
 
 const AuthSignUp = () => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
@@ -40,6 +42,7 @@ const AuthSignUp = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await signUpUser(values)
+      router.replace("/dashboard")
       toast.success("Usuário cadastrado com sucesso")
     } catch (error) {
       toast.error("Ocorreu um erro inesperado")
@@ -96,6 +99,7 @@ const AuthSignUp = () => {
                 <FormLabel>Senha:</FormLabel>
                 <FormControl>
                   <Input
+                    type="password"
                     disabled={isSubmitting}
                     placeholder="Digite sua senha"
                     {...field}

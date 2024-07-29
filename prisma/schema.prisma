@@ -48,6 +48,7 @@ model User {
   instagram     String?
   hash          String?
   password      String?
+  token         String?
 
   accounts Account[]
   sessions Session[]

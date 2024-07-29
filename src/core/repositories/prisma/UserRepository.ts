@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { User } from "next-auth";
 
 export class UserRepository  {
     private prisma: PrismaClient;
@@ -8,8 +7,21 @@ export class UserRepository  {
         this.prisma = new PrismaClient();
     }
 
-    signIn () {
-        return  "OK"
+    async signIn (email: string) {
+        try {
+            const user = await this.prisma.user.findUnique({
+                where:{
+                    email
+                }
+            }) 
+            if (!user) {
+                throw new Error();
+            }
+            
+            return user
+        } catch (error) {
+            throw new Error();
+        }
     }
     signOut () {
 
@@ -33,7 +45,7 @@ export class UserRepository  {
                     hash
                 }
             })
-            
+         
             return user
         } catch (error) {
             console.error(error);

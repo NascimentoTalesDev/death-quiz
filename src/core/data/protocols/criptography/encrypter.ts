@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export interface Encrypter {
-    encrypt (value: string): Promise<string>;
-}
+    encrypt (user: User): Promise<string>;
+} 

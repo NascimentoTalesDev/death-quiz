@@ -3,10 +3,20 @@
 import React from 'react'
 import { ArrowBigLeftDash } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import { getSession, signOutDeath } from '@/app/dashboard/actions'
+import { useRouter } from 'next/navigation'
 
 export const LogOutButton = () => {
+  const router = useRouter()
+
   const logOut = async() => {
-    await signOut({ callbackUrl: "/auth"})
+    const res = await getSession()
+    if(res){
+      await signOutDeath()
+      router.replace("/auth")
+    }else{
+      await signOut({ callbackUrl: "/auth"})
+    }
   }
 
   return (

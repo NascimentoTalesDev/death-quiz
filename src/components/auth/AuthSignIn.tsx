@@ -15,6 +15,9 @@ import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { CheckboxItem } from "../CheckboxItem";
+import { signInUser } from "@/app/auth/actions";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   email: z.string().email().min(1, {
@@ -26,6 +29,7 @@ const formSchema = z.object({
 });
 
 const AuthSignIn = () => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
@@ -35,7 +39,12 @@ const AuthSignIn = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-    } catch (error) {}
+      await signInUser(values)
+      router.replace("/dashboard")
+      toast.success("Usuário autenticado com sucesso")
+    } catch (error) {
+      toast.error("Ocorreu um erro inesperado")
+    }
   };
 
   return (
@@ -71,6 +80,7 @@ const AuthSignIn = () => {
                 <FormLabel>Senha:</FormLabel>
                 <FormControl>
                   <Input
+                    type="password"
                     disabled={isSubmitting}
                     placeholder="Digite sua senha"
                     {...field}

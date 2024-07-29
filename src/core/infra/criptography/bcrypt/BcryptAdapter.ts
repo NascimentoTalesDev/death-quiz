@@ -13,4 +13,11 @@ export class BcryptAdapter implements Hasher {
         const hash = await bcrypt.hash(value, this.salt)        
         return hash
     }
+    
+    async compare(password: string, hash: string){
+        const res = await bcrypt.compare(password, hash)
+        console.log("RES COMPARE", res);
+                
+        return res
+    }
 }

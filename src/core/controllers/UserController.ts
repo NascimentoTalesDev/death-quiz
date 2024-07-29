@@ -13,7 +13,9 @@ export class UserController {
         this.userService = new UserService()
     }
     
-    signIn () {
+    async signIn (email: string, password: string) {
+        const user = await this.userService.signIn(email, password)
+        return user
         
     }
 
