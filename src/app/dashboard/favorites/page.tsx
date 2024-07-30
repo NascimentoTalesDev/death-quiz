@@ -7,11 +7,15 @@ const FavoritesPage = async() => {
   const authController = new AuthController();
   const user = await authController.getCurrentUser();
   const quizzes = await getAllFavorites(user.id)
+  console.log("USER", user);
+  console.log("QUIZZES", quizzes);
   
   return (
     <div className=''>
       <h1 className='mb-5'>FavoritesPage</h1>
-      <QuizGroup quizzes={quizzes}/>
+      {quizzes && (
+        <QuizGroup quizzes={quizzes}/>
+      )}
     </div>
   )
 }
