@@ -32,11 +32,7 @@ const FavoriteQuiz = ({ quiz, user }: FavoriteQuizProps) => {
       toast.error("ERROR");
     }
   };
-
-  useEffect(()=>{
-      checkIsFavorite();
-  },[])
-
+  checkIsFavorite()
   return (
     <div title="Favorito">
       <Heart
