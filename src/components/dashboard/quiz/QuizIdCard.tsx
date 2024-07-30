@@ -2,26 +2,31 @@ import React from "react";
 import { Card, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { Quiz } from "@/types/quiz";
-import { Heart } from "lucide-react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Back from "../Back";
-import getQuizById from "@/app/dashboard/quiz/[id]/actions";
+import { getQuizById } from "@/app/dashboard/quiz/[id]/actions";
 import ButtonStartQuiz from "./ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
+import FavoriteQuiz from "./FavoriteQuiz";
+import { AuthController } from "@/core/controllers/AuthController";
 
 interface QuizProps {
   id: string;
 }
 
 const QuizIdCard = async ({ id }: QuizProps) => {
-  const quiz: Quiz = await getQuizById(id)
+  const quiz = await getQuizById(id);
+  const authController = new AuthController();
+  const user = await authController.getCurrentUser();
 
   return (
     <>
       <div className="flex flex-col md:flex-row gap-3 items-center mb-5">
         <Back />
         <div className="text-center md:text-left md:w-full">
-          <h1 className="text-xl font-bold">{formatFirstWordToUpperCase(quiz?.title)}</h1>
+          <h1 className="text-xl font-bold">
+            {formatFirstWordToUpperCase(quiz?.title)}
+          </h1>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -47,11 +52,17 @@ const QuizIdCard = async ({ id }: QuizProps) => {
           <div className="descricao">
             <div className="flex items-center justify-between">
               <h2>Mais informações (DESCRIÇÃO)</h2>
-              <div className="flex gap-3">
-                <AiOutlineLike className="cursor-pointer h-6 w-6" />
-                <Heart className="cursor-pointer" />
-                <AiOutlineDislike className="cursor-pointer h-6 w-6" />
-              </div>
+              {user && (
+                <div className="flex gap-3">
+                  <div title="Gostei">
+                    <AiOutlineLike className="cursor-pointer h-6 w-6" />
+                  </div>
+                  <FavoriteQuiz quiz={quiz} user={user} />
+                  <div title="Não gostei">
+                    <AiOutlineDislike className="cursor-pointer h-6 w-6" />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

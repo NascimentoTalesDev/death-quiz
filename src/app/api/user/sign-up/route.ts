@@ -16,11 +16,7 @@ export async function POST(request: NextRequest) {
     if (!password)
       return new Response(`A senha não pode ser vazia`, { status: 400 });
 
-    const userController = new UserController(
-      name || "",
-      email || "",
-      password || ""
-    );
+    const userController = new UserController();
 
     const user = await userController.signUp(
       name || "",

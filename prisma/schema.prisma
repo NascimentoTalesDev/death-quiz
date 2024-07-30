@@ -50,8 +50,10 @@ model User {
   password      String?
   token         String?
 
-  accounts Account[]
-  sessions Session[]
+  accounts        Account[]
+  sessions        Session[]
+
+  favoritesQuizzes Favorite[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -74,11 +76,27 @@ model Quiz {
   image     String
   title     String
   questions Question[]
+  
+  favorites Favorite[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
   @@map("quizzes")
+}
+
+
+
+model Favorite {
+  id            Int      @id @default(autoincrement())
+
+  userId Int?
+  User   User? @relation(fields: [userId], references: [id])
+  
+  quizId Int?
+  Quiz   Quiz? @relation(fields: [quizId], references: [id])
+
+  @@map("favorites")
 }
 
 model Question {

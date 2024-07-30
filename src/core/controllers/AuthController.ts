@@ -37,6 +37,17 @@ export class AuthController {
         cookieStore.set('death-quiz', token)
     }
 
+    async saveUser (user: User){
+        const cookieStore = cookies()        
+        cookieStore.set('user', JSON.stringify(user))
+    }
+
+    async getCurrentUser (){
+        const cookieStore = cookies()        
+        const res = cookieStore.get('user')?.value        
+        return JSON.parse(res || '')
+    }
+
     async removeSession (){
         const cookieStore = cookies()        
         cookieStore.delete('death-quiz')

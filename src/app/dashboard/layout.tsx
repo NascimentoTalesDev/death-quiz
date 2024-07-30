@@ -23,7 +23,7 @@ export default function LayoutDashboard({ children }: PropsWithChildren) {
         <section className="flex flex-col pb-3 px-3 w-full">
           <Header />
           <div className="flex w-full gap-3 overflow-hidden">
-            <main className="grow p-3 overflow-y-auto dark:border rounded-lg overflow-hidden no-scroll pb-10">
+            <main className="grow bg-white dark:bg-background p-3 overflow-y-auto dark:border rounded-lg overflow-hidden no-scroll pb-10">
               {children}
             </main>
             <aside className="hidden lg:block dark:border min-h-[533px] h-full  max-h-[700px] rounded-lg w-[250px] bg-white dark:bg-background p-3">

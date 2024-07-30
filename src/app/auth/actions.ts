@@ -13,9 +13,12 @@ export async function signUpUser(values: User) {
     },
   })
   const user = await res.json()  
+
   if (user) {
+    
     const authController = new AuthController()
     await authController.saveSession(user?.token)
+    await authController.saveUser(user)
     return user   
   }   
   throw new Error("Ocorreu um erro inesperado");
@@ -34,6 +37,7 @@ export async function signInUser(values: User) {
   if (user) {
     const authController = new AuthController()
     await authController.saveSession(user?.token)
+    await authController.saveUser(user)
     return user   
   }   
   throw new Error("Ocorreu um erro inesperado");

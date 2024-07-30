@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/icons/GoogleIcon.jsx", "src/components/dashboard/Profile.tsx", "src/app/dashboard/components/header/index.jsx", "src/lib/config-api.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/icons/GoogleIcon.jsx", "src/components/dashboard/Profile.tsx", "src/app/dashboard/components/header/index.jsx", "src/lib/config-api.js", "src/helpers/s", "src/helpers/get-current-user.js"],
   "exclude": ["node_modules"]
 }
