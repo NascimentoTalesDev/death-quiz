@@ -9,13 +9,14 @@ import ButtonStartQuiz from "./ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 import FavoriteQuiz from "./FavoriteQuiz";
 import { AuthController } from "@/core/controllers/AuthController";
+import { Favorite } from "@prisma/client";
 
 interface QuizProps {
   id: string;
 }
 
 const QuizIdCard = async ({ id }: QuizProps) => {
-  const quiz = await getQuizById(id);
+  const quiz : Quiz & { favorites: Favorite[] } = await getQuizById(id);
   const authController = new AuthController();
   const user = await authController.getCurrentUser();
 
@@ -57,7 +58,11 @@ const QuizIdCard = async ({ id }: QuizProps) => {
                   <div title="Gostei">
                     <AiOutlineLike className="cursor-pointer h-6 w-6" />
                   </div>
-                  <FavoriteQuiz quiz={quiz} user={user} />
+                  {quiz.favorites.find((favorite) => favorite.userId === user.id) ?
+                    <FavoriteQuiz className={"text-red-500"} quiz={quiz} user={user} />
+                   :
+                    <FavoriteQuiz className={"text-green-500"} quiz={quiz} user={user} />
+                   }
                   <div title="Não gostei">
                     <AiOutlineDislike className="cursor-pointer h-6 w-6" />
                   </div>
