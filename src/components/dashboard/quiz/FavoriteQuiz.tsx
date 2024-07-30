@@ -1,31 +1,37 @@
 "use client";
 
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { favoriteQuiz } from "@/app/dashboard/quiz/[id]/actions";
 import { Favorite, Quiz, User } from "@prisma/client";
 import toast from "react-hot-toast";
 
 interface FavoriteQuizProps {
-    className?: string;
   user: User;
-  quiz: Quiz;
+  quiz: Quiz & { favorites: Favorite[] };
 }
 
-const FavoriteQuiz = ({ className, quiz, user }: FavoriteQuizProps) => {
+const FavoriteQuiz = ({ quiz, user }: FavoriteQuizProps) => {
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
 
   const toggleFavoriteQuiz = async () => {
     try {
-      await favoriteQuiz(quiz.id, user.id);
+      let res = await favoriteQuiz(quiz.id, user.id);
+      setIsFavorite(res)
       toast.success("ATUALIZADO");
     } catch (error) {
       toast.error("ERROR");
     }
   };
 
+  
+
   return (
     <div title="Favorito">
-      <Heart className={className}
+      <Heart
+        className={`cursor-pointer 
+            ${isFavorite ? "text-red-800" : "text-green-800"}`}
         onClick={toggleFavoriteQuiz}
       />
     </div>
