@@ -4,7 +4,7 @@ import getAllQuizzes from './actions'
 
 const QuizPage = async() => {
   const quizzes = await getAllQuizzes()
-
+  
   return (
     <div className=''>
       <h1 className='mb-5'>QuizPage</h1>
