@@ -14,11 +14,6 @@ interface FavoriteQuizProps {
 const FavoriteQuiz = ({ quiz, user }: FavoriteQuizProps) => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const checkIsFavorite = () => {
-    const isFav = quiz.favorites.some((favorite) => favorite.userId === user?.id);
-    setIsFavorite(isFav);
-  };
-
   const toggleFavoriteQuiz = async () => {
     try {
       let res = await favoriteQuiz(quiz.id, user.id);
@@ -28,10 +23,6 @@ const FavoriteQuiz = ({ quiz, user }: FavoriteQuizProps) => {
       toast.error("ERROR");
     }
   };
-
-  useEffect(() => {
-    checkIsFavorite();
-  }, []);
 
   return (
     <div title="Favorito">
