@@ -20,7 +20,6 @@ export class QuizController {
   }
 
   async favorite (quizId: number, userId: number ){
-
     const user = await this.quizService.favorite(quizId, userId)
     return user
 }

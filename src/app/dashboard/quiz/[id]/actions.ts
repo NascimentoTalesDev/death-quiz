@@ -1,6 +1,5 @@
 "use server"
 
-import { QuizController } from "@/core/controllers/QuizController"
 import { baseUrl } from "@/utils/base-url"
 
 export async function getQuizById(id: string){
@@ -18,8 +17,13 @@ export async function getQuizById(id: string){
 
 export async function favoriteQuiz(quizId: number, userId: number){
     
-    const quizController = new QuizController();
-    const quizUpdated = await quizController.favorite(quizId, userId);
-        
+    const res = await fetch(`${baseUrl}/quiz/favorites?quizId=${quizId}&&userId=${userId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'API-Key': process.env.DATA_API_KEY!,
+        },
+    })
+    const quizUpdated = await res.json()    
     return quizUpdated   
 }
