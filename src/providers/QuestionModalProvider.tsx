@@ -1,5 +1,6 @@
 "use client";
 
+import Stopwatch from "@/components/dashboard/quiz/Stopwatch";
 import { Button } from "@/components/ui/button";
 import { GameController } from "@/core/controllers/GameController";
 import { useConfetti } from "@/hooks/useConfetti";
@@ -7,7 +8,7 @@ import { useQuestionModal } from "@/hooks/useQuestionModal";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 import { X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import {  useState } from "react";
 import toast from "react-hot-toast";
 
 const QuestionModalProvider = () => {
@@ -15,21 +16,14 @@ const QuestionModalProvider = () => {
   const questionModal = useQuestionModal();
   const quiz = questionModal?.quiz;
   const gameController: GameController = questionModal?.gameController;
-    
+
   const [showAnswer, setShowAnswer] = useState(false);
-
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-
   const [endGame, setEndGame] = useState(false);
   const [youAreDead, setYouAreDead] = useState(false);
 
-  if (!questionModal.isOpen) return null;
-
-  const checkAnswer = (answer: string, correctAnswer: string) => {    
-    const answerConfirmation = gameController.checkAnswer(
-      answer,
-      correctAnswer
-    );
+  const checkAnswer = (answer: string, correctAnswer: string) => {
+    let answerConfirmation = gameController.checkAnswer(answer, correctAnswer);
 
     setShowAnswer(true);
 
@@ -43,7 +37,11 @@ const QuestionModalProvider = () => {
         toast.error("JOGADOR ELIMINADO");
         setYouAreDead(true);
       }
-    }, 1000);
+    }, 1100);
+  };
+
+  const timeOver = () => {
+    setYouAreDead(true);
   };
 
   const nextQuestion = () => {
@@ -57,13 +55,16 @@ const QuestionModalProvider = () => {
   };
 
   const clear = () => {
-    gameController.stopMusic()
+    gameController.stopMusic();
     setYouAreDead(false);
     setEndGame(false);
     setShowAnswer(false);
     gameController.currentQuestion = 0;
+    gameController.timer = 0;
     setCurrentQuestion(0);
   };
+
+  if (!questionModal.isOpen) return null;
 
   return (
     <div className="absolute  flex px-4 justify-center items-center h-full w-full z-[1] bg-background_rgba backdrop-blur-sm">
@@ -77,6 +78,14 @@ const QuestionModalProvider = () => {
         >
           <X />
         </Button>
+        {!endGame && !youAreDead && (
+          <div className="absolute top-6 left-5 dark:text-background dark:hover:text-accent-foreground">
+            <Stopwatch
+              gameController={gameController}
+              yourTimeIsOver={timeOver}
+            />
+          </div>
+        )}
 
         <div className="text-center mb-4">
           <h2 className="font-bold dark:text-background text-lg text-primary">
@@ -87,7 +96,7 @@ const QuestionModalProvider = () => {
                 {endGame
                   ? "Parabéns Fim de Jogo"
                   : `Questão ${currentQuestion + 1} / ${
-                      gameController.totalQuestion
+                      gameController.totalQuestions
                     }`}
               </>
             )}
@@ -120,7 +129,7 @@ const QuestionModalProvider = () => {
                             value={item?.answer}
                             variant={"ghost"}
                             className={`border min-h-[55px] justify-start ${
-                                item?.answer ===
+                              item?.answer ===
                               quiz?.questions[currentQuestion]?.correctAnswer
                                 ? "border-green-500"
                                 : "border-red-500"

@@ -19,7 +19,7 @@ const ButtonStartQuiz = ({ quiz }: ButtonStartQuizProps) => {
       0
     );
     const res = gameController.start();
-
+    
     if (res) {
       questionModal.onOpen(quiz, gameController);
     }
