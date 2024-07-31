@@ -1,15 +1,13 @@
 import React from "react";
 import { Card, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { Quiz } from "@/types/quiz";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Back from "../Back";
 import { getQuizById } from "@/app/dashboard/quiz/[id]/actions";
 import ButtonStartQuiz from "./ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
-import FavoriteQuiz from "./FavoriteQuiz";
+import FavoriteQuizButton from "./FavoriteQuizButton";
 import { AuthController } from "@/core/controllers/AuthController";
-
 interface QuizProps {
   id: string;
 }
@@ -57,7 +55,7 @@ const QuizIdCard = async ({ id }: QuizProps) => {
                   <div title="Gostei">
                     <AiOutlineLike className="cursor-pointer h-6 w-6" />
                   </div>
-                  <FavoriteQuiz quiz={quiz} user={user} />
+                  <FavoriteQuizButton quiz={quiz} user={user} />
                   <div title="Não gostei">
                     <AiOutlineDislike className="cursor-pointer h-6 w-6" />
                   </div>

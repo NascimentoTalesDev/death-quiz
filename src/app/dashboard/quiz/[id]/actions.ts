@@ -10,6 +10,7 @@ export async function getQuizById(id: string){
             'Content-Type': 'application/json',
             'API-Key': process.env.DATA_API_KEY!,
         },
+        cache: "no-cache"
     })
     const quizzes = await res.json()    
     return quizzes   

@@ -9,6 +9,7 @@ export default async function getAllQuizzes(){
             'Content-Type': 'application/json',
             'API-Key': process.env.DATA_API_KEY!,
         },
+        cache: "no-cache"
     })
     const quizzes = await res.json()    
 
