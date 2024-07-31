@@ -34,7 +34,8 @@ export function Profile({ user }: ProfileProps) {
         <SheetHeader>
           <SheetTitle>Editar Perfil</SheetTitle>
           <SheetDescription>
-          Faça alterações em seu perfil aqui. Clique em salvar quando terminar.          </SheetDescription>
+            Faça alterações em seu perfil aqui. Clique em salvar quando terminar.          
+          </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">

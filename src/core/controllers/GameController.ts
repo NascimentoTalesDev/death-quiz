@@ -11,7 +11,7 @@ export class GameController {
   music: HTMLAudioElement;
   avanca: HTMLAudioElement;
   timer: number = 0;
-  MINUTES_PER_QUESTION: number = 180;
+  MINUTES_PER_QUESTION: number = 180; // 3 minutes per question
 
   getRandomMusic(): string {
     const randomIndex = Math.floor(Math.random() * this.musics.length);
@@ -36,7 +36,7 @@ export class GameController {
   }
 
   calculateTimePerQuestion(totalQuestions: number) {
-    this.timer = totalQuestions * this.MINUTES_PER_QUESTION; // 3 minutes per question
+    this.timer = totalQuestions * this.MINUTES_PER_QUESTION;
   }
 
   playMusic() {

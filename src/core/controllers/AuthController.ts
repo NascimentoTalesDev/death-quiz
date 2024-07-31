@@ -45,12 +45,17 @@ export class AuthController {
     async getCurrentUser (){
         const cookieStore = cookies()        
         const res = cookieStore.get('user')?.value        
-        return JSON.parse(res || '')
+        if(res) {
+            const user = JSON.parse(res || '')
+            return user
+        }
+        return null
     }
 
     async removeSession (){
         const cookieStore = cookies()        
         cookieStore.delete('death-quiz')
+        cookieStore.delete('user')
         return true
     }
 
