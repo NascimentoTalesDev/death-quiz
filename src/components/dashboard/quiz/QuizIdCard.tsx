@@ -19,9 +19,9 @@ const QuizIdCard = async ({ id }: QuizProps) => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-3 items-center mb-5">
+      <div className="flex flex-col md:flex-row gap-3 items-start md:items-center mb-5">
         <Back />
-        <div className="text-center md:text-left md:w-full">
+        <div className="text-center md:text-left w-full">
           <h1 className="text-xl font-bold">
             {formatFirstWordToUpperCase(quiz?.title)}
           </h1>

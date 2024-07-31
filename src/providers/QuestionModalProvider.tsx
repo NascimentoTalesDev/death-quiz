@@ -38,7 +38,6 @@ const QuestionModalProvider = () => {
 
       if (answerConfirmation) {
         toast.success("JOGADOR AVANÇA");
-
         nextQuestion();
       } else {
         toast.error("JOGADOR ELIMINADO");
@@ -58,6 +57,7 @@ const QuestionModalProvider = () => {
   };
 
   const clear = () => {
+    gameController.stopMusic()
     setYouAreDead(false);
     setEndGame(false);
     setShowAnswer(false);

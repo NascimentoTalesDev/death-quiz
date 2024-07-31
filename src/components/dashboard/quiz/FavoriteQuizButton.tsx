@@ -18,8 +18,12 @@ const FavoriteQuizButton = ({ quiz, user }: FavoriteQuizButtonProps) => {
   const toggleFavoriteQuiz = async () => {
     try {
       let res = await favoriteQuiz(quiz.id, user.id);
+      if(res){
+        toast.success("Adicionado à lista de favoritos");
+      }else{
+        toast.error("Removido da lista de favoritos");
+      }
       setIsFavorite(res)
-      toast.success("Atualizado com sucesso");
     } catch (error) {
       toast.error("Error ao atualizar");
     }
@@ -29,7 +33,6 @@ const FavoriteQuizButton = ({ quiz, user }: FavoriteQuizButtonProps) => {
     const checkIsFavorite = () => {
       const isFavorite = quiz.favorites.some((favorite) => favorite.userId === user.id);
       setIsFavorite(isFavorite);
-      console.log("CHECK");
     };
     checkIsFavorite();
   }, [quiz.favorites, user.id]);
@@ -38,7 +41,8 @@ const FavoriteQuizButton = ({ quiz, user }: FavoriteQuizButtonProps) => {
   return (
     <div title="Favorito">
       <Heart
-        className={`cursor-pointer ${isFavorite && "text-green-800"}`}
+        fill={isFavorite ? "#16a34a" : "none"}
+        className={`cursor-pointer ${isFavorite && "text-[#16a34a]"}`}
         onClick={toggleFavoriteQuiz}
       />
     </div>
