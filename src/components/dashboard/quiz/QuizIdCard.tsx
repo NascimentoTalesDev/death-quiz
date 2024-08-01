@@ -8,6 +8,9 @@ import ButtonStartQuiz from "./ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 import FavoriteQuizButton from "./FavoriteQuizButton";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import LikeQuizButton from "./LikeQuizButton";
+import { ThumbsDown } from "lucide-react";
+import UnLikeQuizButton from "./UnLikeQuizButton";
 
 interface QuizProps {
   id: string;
@@ -52,13 +55,9 @@ const QuizIdCard = async ({ id }: QuizProps) => {
               <h2>Mais informações (DESCRIÇÃO)</h2>
               {user && (
                 <div className="flex gap-3">
-                  <div title="Gostei">
-                    <AiOutlineLike className="cursor-pointer h-6 w-6" />
-                  </div>
+                  <LikeQuizButton quiz={quiz} user={user} />
                   <FavoriteQuizButton quiz={quiz} user={user} />
-                  <div title="Não gostei">
-                    <AiOutlineDislike className="cursor-pointer h-6 w-6" />
-                  </div>
+                  <UnLikeQuizButton quiz={quiz} user={user} />
                 </div>
               )}
             </div>

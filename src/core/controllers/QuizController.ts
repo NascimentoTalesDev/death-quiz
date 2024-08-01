@@ -23,7 +23,17 @@ export class QuizController {
   }
 
   async favorite (quizId: number, userId: number ){
-    const user = await this.quizService.favorite(quizId, userId)
-    return user
-}
+    const favoriteUpdated = await this.quizService.favorite(quizId, userId)
+    return favoriteUpdated
+  }
+  
+  async like (quizId: number, userId: number ){
+    const likeUpdated = await this.quizService.like(quizId, userId)
+    return likeUpdated
+  }
+  
+  async unLike (quizId: number, userId: number ){
+    const unLikeUpdated = await this.quizService.unLike(quizId, userId)
+    return unLikeUpdated
+  }
 }

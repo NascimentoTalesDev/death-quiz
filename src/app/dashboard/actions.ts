@@ -28,3 +28,16 @@ export default async function getLatestQuizzesAdded(){
 
   return quizzes
 }
+
+export async function findUserById(userId: number){
+  const res = await fetch(`${baseUrl}/user/user-id?userId=${userId}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'API-Key': process.env.DATA_API_KEY!,
+      },
+  })
+  const user = await res.json()    
+
+  return user
+}

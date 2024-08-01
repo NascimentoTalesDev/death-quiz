@@ -1,16 +1,13 @@
+import { CompletedQuizzes, User } from '@prisma/client'
 import { Flag, Skull, Trophy, User2Icon, UserCheck } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
 interface UserProps {
-    user: {
-        name: string,
-        email: string,
-        image: string,
-    }
+    user: User & { completedQuizzes : CompletedQuizzes[] }
 }
 
-const User = ({ user }: UserProps) => {
+const UserProfile = ({ user }: UserProps) => {
   return (
     <div className='flex flex-col gap-3'>
         <div className='flex gap-3'>
@@ -33,7 +30,7 @@ const User = ({ user }: UserProps) => {
                         <Skull className='w-5 text-primary' />
                     </div>
                     <div className='flex flex-col' >
-                        <div><span className='text-sm'>13</span></div>
+                        <div><span className='text-sm'>{user?.completedQuizzes?.length}</span></div>
                         <div><span className='text-[12px]'>Concluidos</span></div>
                     </div>
                 </div>
@@ -60,4 +57,4 @@ const User = ({ user }: UserProps) => {
   )
 }
 
-export default User
+export default UserProfile

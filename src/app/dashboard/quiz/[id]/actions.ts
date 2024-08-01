@@ -28,3 +28,29 @@ export async function favoriteQuiz(quizId: number, userId: number){
     const quizUpdated = await res.json()    
     return quizUpdated   
 }
+
+export async function likeQuiz(quizId: number, userId: number){
+    
+    const res = await fetch(`${baseUrl}/quiz/like?quizId=${quizId}&&userId=${userId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'API-Key': process.env.DATA_API_KEY!,
+        },
+    })
+    const quizUpdated = await res.json()    
+    return quizUpdated   
+}
+
+export async function unLikeQuiz(quizId: number, userId: number){
+    
+    const res = await fetch(`${baseUrl}/quiz/unlike?quizId=${quizId}&&userId=${userId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'API-Key': process.env.DATA_API_KEY!,
+        },
+    })
+    const quizUpdated = await res.json()    
+    return quizUpdated   
+}

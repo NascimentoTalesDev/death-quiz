@@ -1,12 +1,15 @@
 import React from 'react';
-import User from './User';
-import { useCurrentUser } from '@/hooks/use-current-user';
+import { CompletedQuizzes, User } from '@prisma/client';
+import UserProfile from './UserProfile';
 
-const Profile = async ()  => {
-  const user = await useCurrentUser()
+interface ProfileProps{
+  user: User & { completedQuizzes : CompletedQuizzes[] }
+}
+
+const Profile = async ({ user }: ProfileProps)  => {
 
   return (
-    <User user={user }/>
+    <UserProfile user={user}/>
   )
 }
 

@@ -52,4 +52,25 @@ export class UserRepository  {
             throw new Error();
         }
     }
+
+    async findById (userId: number) {
+        try {
+            const user = await this.prisma.user.findUnique({
+                where:{
+                    id: userId
+                },
+                include:{
+                    completedQuizzes: true,
+                }
+            }) 
+            if (!user) {
+                throw new Error();
+            } 
+         
+            return user
+        } catch (error) {
+            console.error(error);
+            throw new Error();
+        }
+    }
 }

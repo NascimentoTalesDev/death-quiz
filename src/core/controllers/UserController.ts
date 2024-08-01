@@ -22,4 +22,9 @@ export class UserController {
         return user
     }
 
+    async findById (userId: number ){
+        const user = await this.userService.findById(userId)
+        return user
+    }
+
 }
