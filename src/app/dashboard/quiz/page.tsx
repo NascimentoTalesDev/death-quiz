@@ -7,7 +7,7 @@ const QuizPage = async() => {
   
   return (
     <div className=''>
-      <h1 className='mb-5'>QuizPage</h1>
+      <h1 className='mb-5'>Todos os Quizzes</h1>
       <QuizGroup quizzes={quizzes}/>
     </div>
   )

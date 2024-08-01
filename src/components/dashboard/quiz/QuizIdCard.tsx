@@ -7,15 +7,15 @@ import { getQuizById } from "@/app/dashboard/quiz/[id]/actions";
 import ButtonStartQuiz from "./ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 import FavoriteQuizButton from "./FavoriteQuizButton";
-import { AuthController } from "@/core/controllers/AuthController";
+import { useCurrentUser } from "@/hooks/use-current-user";
+
 interface QuizProps {
   id: string;
 }
 
 const QuizIdCard = async ({ id }: QuizProps) => {
   const quiz = await getQuizById(id);
-  const authController = new AuthController();
-  const user = await authController.getCurrentUser();
+  const user = await useCurrentUser()
 
   return (
     <>

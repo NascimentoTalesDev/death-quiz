@@ -21,6 +21,24 @@ export class QuizRepository {
     return allQuiz;
   }
 
+  async getLatestQuizzesAdded(): Promise<Quiz[]> {
+    const allQuiz = await this.prisma.quiz.findMany({
+      orderBy:{
+        createdAt: "desc"
+      },
+      take: 4,
+      include: {
+        questions: {
+          include: {
+            answers: true,
+          },
+        },
+        favorites: true
+      },
+    });
+    return allQuiz;
+  }
+
   async getAllFavorites(userId: number): Promise<Quiz[]> {
     const allQuiz = await this.prisma.quiz.findMany({
       where: {

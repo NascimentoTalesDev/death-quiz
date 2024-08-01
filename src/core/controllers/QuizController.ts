@@ -10,6 +10,9 @@ export class QuizController {
   async getAll() {    
     return this.quizService.getAll();
   }
+  async getLatestQuizzesAdded() {    
+    return this.quizService.getLatestQuizzesAdded();
+  }
 
   async getAllFavorites(userId: number) {    
     return this.quizService.getAllFavorites(userId);

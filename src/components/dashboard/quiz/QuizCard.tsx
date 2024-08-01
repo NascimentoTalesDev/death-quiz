@@ -20,7 +20,7 @@ const QuizCard = ({ quiz } : QuizProps  ) => {
           <div className="bg-white dark:bg-gray-500 text-sm w-fit p-1 rounded-md">
             <span>{quiz?.questions?.length} quest.</span>
           </div>
-          <div className="backdrop-blur-sm flex text-white px-1 py-2 rounded-md">
+          <div className="backdrop-blur-sm flex justify-center text-white px-1 py-2 rounded-md">
             <CardTitle className="text-lg font-normal">{quiz?.title}</CardTitle>
           </div>
         </div>

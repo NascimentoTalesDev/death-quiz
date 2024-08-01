@@ -12,6 +12,11 @@ export class QuizService{
         return allQuizzes;
     }
 
+    async getLatestQuizzesAdded(){
+        const allQuizzes = await this.quizRepository.getLatestQuizzesAdded() 
+        return allQuizzes;
+    }
+
     async getAllFavorites(userId: number){
         const allQuizzes = await this.quizRepository.getAllFavorites(userId) 
         return allQuizzes;

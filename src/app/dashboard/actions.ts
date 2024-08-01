@@ -1,6 +1,7 @@
 "use server";
 
 import { AuthController } from "@/core/controllers/AuthController";
+import { baseUrl } from "@/utils/base-url";
 
 export async function getSession() {
   const authController = new AuthController();
@@ -13,4 +14,17 @@ export async function signOutDeath() {
   await authController.removeSession();
 
   return;
+}
+
+export default async function getLatestQuizzesAdded(){
+  const res = await fetch(`${baseUrl}/quiz/get-latest-quizzes-added`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'API-Key': process.env.DATA_API_KEY!,
+      },
+  })
+  const quizzes = await res.json()    
+
+  return quizzes
 }
