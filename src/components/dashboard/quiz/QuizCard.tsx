@@ -6,6 +6,7 @@ import {
 import Image from "next/image";
 import { Quiz } from "@/types/quiz";
 import Link from "next/link";
+import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 
 interface QuizProps{
   quiz: Quiz
@@ -21,7 +22,7 @@ const QuizCard = ({ quiz } : QuizProps  ) => {
             <span>{quiz?.questions?.length} quest.</span>
           </div>
           <div className="backdrop-blur-sm flex justify-center text-white px-1 py-2 rounded-md">
-            <CardTitle className="text-lg font-normal">{quiz?.title}</CardTitle>
+            <CardTitle className="text-lg font-normal">{formatFirstWordToUpperCase(quiz?.title)}</CardTitle>
           </div>
         </div>
       </Card>

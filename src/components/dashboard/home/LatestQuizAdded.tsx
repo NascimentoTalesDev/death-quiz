@@ -1,6 +1,5 @@
 import React from 'react'
 import QuizGroup from '../quiz/QuizGroup'
-import getAllQuizzes from '@/app/dashboard/quiz/actions'
 import getLatestQuizzesAdded from '@/app/dashboard/actions'
 
 const LatestQuizAdded = async () => {
