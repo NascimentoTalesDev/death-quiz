@@ -59,7 +59,7 @@ const quiz = async () => {
             
         })
         
-        console.log("Successfully");
+        console.log("Successfully") ;
     } catch (error) {
         console.log(error);
     } finally {
