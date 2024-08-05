@@ -8,8 +8,8 @@
 
 # testing
 /coverage
-cypress
-./cypress.config.ts
+/cypress
+
 # next.js
 /.next/
 /out/
