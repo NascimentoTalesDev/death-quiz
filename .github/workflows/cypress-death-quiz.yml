@@ -1,4 +1,4 @@
-name: Cypress Tests - Death Quiz
+name: Cypress Tests - Death Quiz Tests
 
 on:
   push:
