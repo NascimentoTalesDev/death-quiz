@@ -9,7 +9,7 @@
 # testing
 /coverage
 /cypress
-cypress.config.ts
+cypress.config
 # next.js
 /.next/
 /out/
