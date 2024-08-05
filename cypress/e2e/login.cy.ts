@@ -24,14 +24,14 @@ describe('Login Page', () => {
       email: '',
       password: '',
     }
-    it('Entrar no site', () => {
+    it('Enter on AuthPage', () => {
       cy.visit('/')
     }),
     it(`When i enter "${input.email}" in the email field`,() => {
       loginForm.typeEmail("testemail.com")
     }),
     it(`When i enter "${input.password}" in the password field`,() => {
-      loginForm.typePassword("minhasenha")
+      loginForm.typePassword("mypassword")
     }),
     it(`Todo anything`,()=>{}),
     it(`Todo anything`,()=>{}),
