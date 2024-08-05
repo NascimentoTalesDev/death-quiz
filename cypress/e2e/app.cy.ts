@@ -1,10 +1,7 @@
 class LoginForm {
   elements = {
     emailInput: () => cy.get("[name='email']"),
-    // invalidEmail: () => cy.get('#:R2l7puja:-form-item-message'),
     passwordInput: () => cy.get('[type="password"]'),
-    // invalidPassword: () => cy.get('#:R4l7puja:-form-item-message'),
-    // submitInput: () => cy.get('input type="submit"'),
   }
 
   typeEmail(text: string){
