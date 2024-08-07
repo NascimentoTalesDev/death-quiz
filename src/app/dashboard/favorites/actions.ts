@@ -2,8 +2,10 @@
 
 import { baseUrl } from "@/utils/base-url"
 
-export default async function getAllFavorites(userId: number,){    
-    const res = await fetch(`${baseUrl}/quiz/get-all-favorites?userId=${userId}`, {
+export default async function getAllFavorites(userId: number,){ 
+    console.log("US", userId);
+       
+    const res = await fetch(`${baseUrl}/quizzes/favorites?userId=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

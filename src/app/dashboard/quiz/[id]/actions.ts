@@ -4,7 +4,7 @@ import { baseUrl } from "@/utils/base-url"
 
 export async function getQuizById(id: string){
     
-    const res = await fetch(`${baseUrl}/quizId?id=${id}`, {
+    const res = await fetch(`${baseUrl}/quizzes/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ export async function getQuizById(id: string){
 
 export async function favoriteQuiz(quizId: number, userId: number){
     
-    const res = await fetch(`${baseUrl}/quiz/favorites?quizId=${quizId}&&userId=${userId}`, {
+    const res = await fetch(`${baseUrl}/quizzes/favorite?quizId=${quizId}&&userId=${userId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export async function favoriteQuiz(quizId: number, userId: number){
 
 export async function likeQuiz(quizId: number, userId: number){
     
-    const res = await fetch(`${baseUrl}/quiz/like?quizId=${quizId}&&userId=${userId}`, {
+    const res = await fetch(`${baseUrl}/quizzes/like?quizId=${quizId}&&userId=${userId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export async function likeQuiz(quizId: number, userId: number){
 
 export async function unLikeQuiz(quizId: number, userId: number){
     
-    const res = await fetch(`${baseUrl}/quiz/unlike?quizId=${quizId}&&userId=${userId}`, {
+    const res = await fetch(`${baseUrl}/quizzes/unlike?quizId=${quizId}&&userId=${userId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

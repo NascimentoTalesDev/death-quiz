@@ -3,7 +3,7 @@
 import { baseUrl } from "@/utils/base-url"
 
 export default async function getAllQuizzes(){
-    const res = await fetch(`${baseUrl}/quiz`, {
+    const res = await fetch(`${baseUrl}/quizzes`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
