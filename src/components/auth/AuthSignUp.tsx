@@ -14,7 +14,6 @@ import {
 import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { signUpUser } from "@/app/auth/actions";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -41,7 +40,6 @@ const AuthSignUp = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await signUpUser(values)
       router.replace("/dashboard")
       toast.success("Usuário cadastrado com sucesso")
     } catch (error) {

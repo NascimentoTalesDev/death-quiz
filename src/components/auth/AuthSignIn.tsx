@@ -15,7 +15,6 @@ import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { CheckboxItem } from "../CheckboxItem";
-import { signInUser } from "@/app/auth/actions";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -39,7 +38,6 @@ const AuthSignIn = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await signInUser(values)
       router.replace("/dashboard")
       toast.success("Usuário autenticado com sucesso")
     } catch (error) {
