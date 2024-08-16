@@ -18,7 +18,6 @@ interface QuizProps {
 
 const QuizIdCard = async ({ id }: QuizProps) => {
   const quiz = await getQuizById(id);
-  const user = await useCurrentUser()
 
   return (
     <>
@@ -53,13 +52,6 @@ const QuizIdCard = async ({ id }: QuizProps) => {
           <div className="descricao">
             <div className="flex items-center justify-between">
               <h2>Mais informações (DESCRIÇÃO)</h2>
-              {user && (
-                <div className="flex gap-3">
-                  <LikeQuizButton quiz={quiz} user={user} />
-                  <FavoriteQuizButton quiz={quiz} user={user} />
-                  <UnLikeQuizButton quiz={quiz} user={user} />
-                </div>
-              )}
             </div>
           </div>
         </div>
