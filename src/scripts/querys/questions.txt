@@ -1,0 +1,11 @@
+insert into questions (question, correctAnswer, quizId) values
+("Como se chama o irmão de Wandinha?", "Feioso", 4 ),
+("Qual é o nome da colega de quarto de Wandinha?", "Enid", 4 ),
+("perguntaComo se chama a ancestral de Wandinha?", "Goody", 4 ),
+("Em qual cidade mora o Tyler?", "Jerico", 4 ),
+("Em qual lugar Wandinha encontrou seu irmão preso com uma maçã na boca?", "Armário", 4 ),
+("Quantos episódios tem a primeira temporada?", "8 epsódios", 4 ),
+("Como se chamam os pais de Wandinha?", "Mortícia e Gomez", 4 ),
+("Qual esporte Wandinha e Bianca duelaram no primeiro episódio?", "Esgrima", 4 ),
+("Que aluno pode dar vidas ao seus desenhos?", "Xavier", 4 ),
+("Em que dia Wandinha nasceu?", "Sexta-feira 13", 4 );

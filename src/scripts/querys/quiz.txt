@@ -1,0 +1,2 @@
+insert into quizzes (image, title) values
+("wandinha.jpg", "Wandinha" ),

@@ -17,6 +17,7 @@ export async function getQuizById(id: string){
 }
 
 export async function favoriteQuiz(quizId: number, userId: number){
+    console.log(quizId, userId);
     
     const res = await fetch(`${baseUrl}/quizzes/favorite?quizId=${quizId}&&userId=${userId}`, {
         method: 'POST',
@@ -25,8 +26,8 @@ export async function favoriteQuiz(quizId: number, userId: number){
             'API-Key': process.env.DATA_API_KEY!,
         },
     })
-    const quizUpdated = await res.json()    
-    return quizUpdated   
+    const favoriteUpdated = await res.json()    
+    return favoriteUpdated   
 }
 
 export async function likeQuiz(quizId: number, userId: number){

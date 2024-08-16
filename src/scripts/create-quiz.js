@@ -28,6 +28,7 @@ const dataAnswers = [
 
 const quiz = async () => {
     await db.$connect()
+    console.log("AQUI");
     try {
         await db.$transaction( async (prisma) => {
 
