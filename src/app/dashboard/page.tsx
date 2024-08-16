@@ -4,7 +4,6 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { findUserById } from "./actions";
 
 export default async function DashboardPage() {
-  const current = await useCurrentUser()
   
   return (
     <div className="h-full w-full">
