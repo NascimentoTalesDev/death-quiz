@@ -5,7 +5,6 @@ import { findUserById } from "./actions";
 
 export default async function DashboardPage() {
   const current = await useCurrentUser()
-  const user = await findUserById(current?.id)
   
   return (
     <div className="h-full w-full">
