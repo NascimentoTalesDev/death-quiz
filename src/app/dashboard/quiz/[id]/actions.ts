@@ -12,7 +12,7 @@ export async function getQuizById(id: string){
         },
         cache: "no-cache"
     })
-    const quizzes = await res.json()    
+    const quizzes = res.json()    
     return quizzes   
 }
 

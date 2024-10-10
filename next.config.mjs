@@ -9,6 +9,18 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "death-quiz.s3.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "C:\fakepath\vandinha.jpg",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

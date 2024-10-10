@@ -2,6 +2,7 @@ export type Quiz = {
   id: number;
   image: string;
   title: string;
+  isPublished: boolean;
   createdAt: Date;
   updatedAt: Date;
   questions: [
