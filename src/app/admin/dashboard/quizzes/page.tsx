@@ -1,22 +1,12 @@
 import { NewQuiz } from '@/components/admin/quizzes/NewQuiz'
-import { QuizTable } from '@/components/admin/quizzes/QuizTable'
-import React from 'react'
-import getAllQuizzesAmin from './new-quiz/actions'
+import Quizzes from '@/components/admin/quizzes/Quizzes'
 
-const AdminQuizzes = async() => {
-  let allQuizzes
-  try {
-    allQuizzes = await getAllQuizzesAmin()
-  } catch (error) {
-    console.log(error);
-  }
+const AdminQuizzes = () => {
   
   return (
     <div>
       <NewQuiz />
-      {allQuizzes && (
-        <QuizTable allQuizzes={allQuizzes} />
-      )}
+      <Quizzes />
     </div>
   )
 }
