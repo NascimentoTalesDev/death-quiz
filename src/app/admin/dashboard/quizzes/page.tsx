@@ -1,22 +1,16 @@
-"use client"
-
 import { NewQuiz } from '@/components/admin/quizzes/NewQuiz'
 import { QuizTable } from '@/components/admin/quizzes/QuizTable'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import getAllQuizzesAmin from './new-quiz/actions'
 
-const AdminQuizzes = () => {
-  const [allQuizzes, setAllQuizzes] = useState(null)
-
-  useEffect(() => {
-    const fetchQuizzes = async () => {
-      const quizzes = await getAllQuizzesAmin()
-      setAllQuizzes(quizzes)
-    }
-
-    fetchQuizzes()
-  }, [])
-
+const AdminQuizzes = async() => {
+  let allQuizzes
+  try {
+    allQuizzes = await getAllQuizzesAmin()
+  } catch (error) {
+    console.log(error);
+  }
+  
   return (
     <div>
       <NewQuiz />
