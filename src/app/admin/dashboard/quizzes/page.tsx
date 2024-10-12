@@ -1,3 +1,5 @@
+"use client"
+
 import { NewQuiz } from '@/components/admin/quizzes/NewQuiz'
 import { QuizTable } from '@/components/admin/quizzes/QuizTable'
 import React, { useEffect, useState } from 'react'
