@@ -9,7 +9,9 @@ const AdminQuizzes = async() => {
   return (
     <div>
       <NewQuiz />
-      <QuizTable allQuizzes={allQuizzes} />
+      {allQuizzes && (
+        <QuizTable allQuizzes={allQuizzes} />
+      )}
     </div>
   )
 }

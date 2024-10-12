@@ -11,7 +11,7 @@ const AsideAdmin = () => {
             <AsideAdminContainer id="aside-container">
                 
                 <AsideAdminItem id="aside-logo-container" className="text-primary w-fit mb-8 cursor-pointer">
-                    <Logo />
+                    <Logo path="/admin/dashboard" />
                 </AsideAdminItem>
 
                 <AsideAdminItem id="menu" className="h-full">
