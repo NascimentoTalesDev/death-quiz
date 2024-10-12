@@ -1,11 +1,20 @@
 import { NewQuiz } from '@/components/admin/quizzes/NewQuiz'
 import { QuizTable } from '@/components/admin/quizzes/QuizTable'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import getAllQuizzesAmin from './new-quiz/actions'
 
-const AdminQuizzes = async() => {
-  const allQuizzes = await getAllQuizzesAmin()
-  
+const AdminQuizzes = () => {
+  const [allQuizzes, setAllQuizzes] = useState(null)
+
+  useEffect(() => {
+    const fetchQuizzes = async () => {
+      const quizzes = await getAllQuizzesAmin()
+      setAllQuizzes(quizzes)
+    }
+
+    fetchQuizzes()
+  }, [])
+
   return (
     <div>
       <NewQuiz />
