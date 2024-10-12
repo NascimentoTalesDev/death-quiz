@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
-import { favoriteQuiz } from "@/app/dashboard/quiz/[id]/actions";
+import { favoriteQuiz } from "@/app/dashboard/quizzes/[id]/actions";
 import { Favorite, Quiz, User } from "@prisma/client";
 import toast from "react-hot-toast";
 

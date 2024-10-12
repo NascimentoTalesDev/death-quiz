@@ -15,7 +15,7 @@ const GroupAdminLink = ({ id }:GroupAdminLinkProps ) => {
     return (
     <AsideItemCol id="menu-col">
       <AsideAdminLink active={pathname === "/dashboard"} path="/dashboard" icon={<LayoutDashboard  />} >Dashboard</AsideAdminLink>
-      <AsideAdminLink active={checkPathname(pathname, "/dashboard/quiz")} path="/dashboard/quiz" icon={<Skull /> }>Quizzes</AsideAdminLink>
+      <AsideAdminLink active={checkPathname(pathname, "/dashboard/quizzes")} path="/dashboard/quizzes" icon={<Skull /> }>Quizzes</AsideAdminLink>
       <AsideAdminLink active={checkPathname(pathname, "/dashboard/favorites")} path="/dashboard/favorites" icon={<Heart /> }>Favoritos</AsideAdminLink>
       <AsideAdminLink active={checkPathname(pathname, "/dashboard/friends")} path="/dashboard/friends" icon={<Contact /> }>Amigos</AsideAdminLink>
       <AsideAdminLink active={checkPathname(pathname, "/dashboard/settings")} path="/dashboard/settings" icon={<Settings />} >Configurações</AsideAdminLink>

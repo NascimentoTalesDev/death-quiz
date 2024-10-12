@@ -1,6 +1,6 @@
 "use client";
 
-import Stopwatch from "@/components/dashboard/quiz/Stopwatch";
+import Stopwatch from "@/components/dashboard/quizzes/Stopwatch";
 import { Button } from "@/components/ui/button";
 import { GameController } from "@/core/controllers/GameController";
 import { useConfetti } from "@/hooks/useConfetti";

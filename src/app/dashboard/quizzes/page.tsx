@@ -1,8 +1,6 @@
 import React from 'react'
 import getAllQuizzes from './actions'
-import QuizCard from '@/components/dashboard/quiz/QuizCard'
-import { Quiz } from '@prisma/client'
-import QuizGroup from '@/components/dashboard/quiz/QuizGroup'
+import QuizGroup from '@/components/dashboard/quizzes/QuizGroup'
 
 const QuizPage = async() => {
   const quizzes = await getAllQuizzes()
@@ -11,7 +9,7 @@ const QuizPage = async() => {
   return (
     <div className=''>
       <h1 className='mb-5'>Todos os Quizzes</h1>
-      {/* <QuizGroup quizzes={quizzes} /> */}
+      <QuizGroup quizzes={quizzes} />
     </div>
   )
 }

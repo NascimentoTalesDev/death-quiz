@@ -12,7 +12,6 @@ const QuestionsPage = async ({ params }: { params: { id: string } }) => {
           <Back />
           <QuestionsForm quizId={params.id} />
         </>
-
       }
     </div>
   )

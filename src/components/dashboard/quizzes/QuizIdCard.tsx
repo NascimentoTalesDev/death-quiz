@@ -3,7 +3,7 @@ import { Card, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Back from "../Back";
-import { getQuizById } from "@/app/dashboard/quiz/[id]/actions";
+import { getQuizById } from "@/app/dashboard/quizzes/[id]/actions";
 import ButtonStartQuiz from "./ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
 import FavoriteQuizButton from "./FavoriteQuizButton";
@@ -33,7 +33,7 @@ const QuizIdCard = async ({ id }: QuizProps) => {
         <div className="flex flex-col gap-3">
           <Card className="relative h-[250px] rounded-xl overflow-hidden">
             <Image
-              src={`/images/${quiz?.image}`}
+              src={quiz?.image}
               alt=""
               objectFit="cover"
               fill

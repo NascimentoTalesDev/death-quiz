@@ -2,6 +2,7 @@
 
 import { baseUrl } from "@/utils/base-url";
 import { Quiz } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export default async function createQuestion(values: Quiz ){
   const res = await fetch(`${baseUrl}/questions`, {
@@ -12,8 +13,8 @@ export default async function createQuestion(values: Quiz ){
       },
       body: JSON.stringify(values)
   })
+  revalidatePath('/admin/dashboard/quizzes')
   const quizUpdated = await res.json()    
-
   return quizUpdated
 }
 

@@ -2,6 +2,7 @@
 
 import { baseUrl } from "@/utils/base-url";
 import { Quiz } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function createQuiz(values: Quiz){
   const res = await fetch(`${baseUrl}/quizzes`, {
@@ -11,6 +12,20 @@ export async function createQuiz(values: Quiz){
           'API-Key': process.env.DATA_API_KEY!,
       },
       body: JSON.stringify(values)
+  })
+  revalidatePath('/admin/dashboard/quizzes')
+  const quizzes = await res.json()    
+  return quizzes
+}
+
+export default async function getAllQuizzesAmin(){
+  const res = await fetch(`${baseUrl}/quizzes/admin`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'API-Key': process.env.DATA_API_KEY!,
+          'Cache-Control': 'no-cache',
+      },
   })
   const quizzes = await res.json()    
 

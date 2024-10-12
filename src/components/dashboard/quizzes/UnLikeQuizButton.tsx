@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { unLikeQuiz } from "@/app/dashboard/quiz/[id]/actions";
+import { unLikeQuiz } from "@/app/dashboard/quizzes/[id]/actions";
 import { Quiz, UnLikedQuizzes, User } from "@prisma/client";
 import toast from "react-hot-toast";
 import { ThumbsDown } from "lucide-react";

@@ -1,5 +1,5 @@
+import QuizIdCard from '@/components/dashboard/quizzes/QuizIdCard'
 import React from 'react'
-import QuizIdCard from '@/components/dashboard/quiz/QuizIdCard';
 
 const QuizIdPage = async({ params}: { params : { id : string} }) => {
    

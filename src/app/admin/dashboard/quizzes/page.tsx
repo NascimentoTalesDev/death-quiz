@@ -1,10 +1,10 @@
-import getAllQuizzes from '@/app/dashboard/quiz/actions'
 import { NewQuiz } from '@/components/admin/quizzes/NewQuiz'
 import { QuizTable } from '@/components/admin/quizzes/QuizTable'
 import React from 'react'
+import getAllQuizzesAmin from './new-quiz/actions'
 
 const AdminQuizzes = async() => {
-  const allQuizzes = await getAllQuizzes()
+  const allQuizzes = await getAllQuizzesAmin()
   
   return (
     <div>

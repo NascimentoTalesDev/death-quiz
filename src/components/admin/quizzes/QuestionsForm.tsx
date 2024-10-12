@@ -63,7 +63,7 @@ const QuestionsForm = ({ quizId }: QuestionsFormProps) => {
 
         const correctAnswer = correctAnswerNumber !== null ? values.answers[correctAnswerNumber]?.text : null
         if (!correctAnswer) {
-            toast.error("Resposta correta inválida")
+            toast.error("Marque a resposta correta")
             return
         }
 
