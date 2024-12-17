@@ -3,8 +3,11 @@ import { HeaderComponent, HeaderContainer, HeaderFlexItem, HeaderItem } from "./
 import SearchQuiz from "@/components/SearchQuiz";
 import { Profile } from "@/components/dashboard/Profile";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import { SearchParamsProps } from '@/interfaces/searchparams'
+import { Search } from "@/components/Search";
 
-const Header = async() => {
+const Header = async ({ searchParams }) => {
+    const query = searchParams?.query ?? ""    
     const user = await useCurrentUser()
 
     return (
@@ -12,7 +15,8 @@ const Header = async() => {
             <HeaderContainer id="header-container">
                 <HeaderFlexItem className="items-center gap-3 justify-between">
                     <HeaderItem className="grow">
-                        <SearchQuiz />
+                        <Search />
+                        {/* <SearchQuiz /> */}
                     </HeaderItem>
                     <HeaderItem className="w-[250px] hidden md:block">
                         <Profile user={user} />

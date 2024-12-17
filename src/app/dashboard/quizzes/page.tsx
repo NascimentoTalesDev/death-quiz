@@ -3,9 +3,7 @@ import getAllQuizzes from './actions'
 import QuizGroup from '@/components/dashboard/quizzes/QuizGroup'
 
 const QuizPage = async() => {
-  const quizzes = await getAllQuizzes()
-  console.log(quizzes);
-  
+  const quizzes = await getAllQuizzes()  
   return (
     <div className=''>
       <h1 className='mb-5'>Todos os Quizzes</h1>
