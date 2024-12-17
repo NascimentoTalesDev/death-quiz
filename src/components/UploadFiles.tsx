@@ -18,12 +18,13 @@ const UploadFiles = ({ onUploadComplete }: UploadFilesProps) => {
     async function uploadImages(ev: React.ChangeEvent<HTMLInputElement>) {
         try {
             setIsUploading(true)
-            if (ev.target.files) {
+            if (ev.target.files) {                
                 const formData = new FormData();
                 formData.append('file', ev.target.files[0]);
             
                 const response = await upload(formData)
-            
+                console.log(response);
+                
                 setImage(response.link)
             
                 onUploadComplete(response.link)
@@ -51,7 +52,7 @@ const UploadFiles = ({ onUploadComplete }: UploadFilesProps) => {
         <div className={cn("h-full w-full flex justify-center items-center")}>
             {image ? (
                 <div className="relative h-full w-full">
-                    <Image alt="Upload" fill src={image} />
+                    <Image alt="Upload" fill objectFit="center" src={image} />
                     <Button type="button" variant={"destructive"} onClick={() => deleteImg(image)} className="absolute overflow-hidden font-bold text-lg top-1 right-1 w-8 h-8">
                         X
                     </Button>

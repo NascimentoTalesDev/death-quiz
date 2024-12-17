@@ -1,1 +1,1 @@
-export const baseUrl = process.env.NODE_ENV === "production" ? "https://api-death-quiz.vercel.app" : "https://api-death-quiz.vercel.app"
+export const baseUrl = process.env.NODE_ENV === "production" ? "https://api-death-quiz.vercel.app" : "http://localhost:8000"

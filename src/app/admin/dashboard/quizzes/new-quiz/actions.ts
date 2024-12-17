@@ -14,6 +14,7 @@ export async function createQuiz(values: Quiz){
       body: JSON.stringify(values)
   })
   revalidatePath('/admin/dashboard/quizzes')
+  revalidatePath('/dashboard/quizzes')
   const quizzes = await res.json()    
   return quizzes
 }

@@ -7,10 +7,10 @@ const NewQuizPage = () => {
   return (
     <div>
       <div className='flex justify-between'>
-            <Back />
+        <Back />
 
-        </div>
-        <QuizForm />
+      </div>
+      <QuizForm />
     </div>
   )
 }
