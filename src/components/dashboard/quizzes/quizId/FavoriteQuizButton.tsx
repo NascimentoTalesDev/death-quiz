@@ -3,20 +3,20 @@
 import React, { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { favoriteQuiz } from "@/app/dashboard/quizzes/[id]/actions";
-import { Favorite, Quiz, User } from "@prisma/client";
+import { Favorite, Quiz } from "@prisma/client";
 import toast from "react-hot-toast";
 
 interface FavoriteQuizButtonProps {
-  user: User;
+  userId: number;
   quiz: Quiz & { favorites: Favorite[] };
 }
 
-const FavoriteQuizButton = ({ quiz, user }: FavoriteQuizButtonProps) => {
+const FavoriteQuizButton = ({ quiz, userId }: FavoriteQuizButtonProps) => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const toggleFavoriteQuiz = async () => {
     try {
-      let res = await favoriteQuiz(quiz.id, user.id);
+      let res = await favoriteQuiz(quiz.id, userId);
       if(res){
         toast.success("Adicionado à lista de favoritos");
       }else{
@@ -30,11 +30,11 @@ const FavoriteQuizButton = ({ quiz, user }: FavoriteQuizButtonProps) => {
 
   useEffect(() => {
     const checkIsFavorite = () => {
-      const isFavorite = quiz?.favorites?.some((favorite) => favorite.userId === user.id);
+      const isFavorite = quiz?.favorites?.some((favorite) => favorite.userId === userId);
       setIsFavorite(isFavorite);
     };
     checkIsFavorite();
-  }, [quiz.favorites, user.id]);
+  }, [quiz.favorites, userId]);
 
   
   return (

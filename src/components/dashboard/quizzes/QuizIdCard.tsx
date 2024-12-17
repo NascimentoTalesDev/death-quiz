@@ -4,13 +4,14 @@ import Image from "next/image";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Back from "../Back";
 import { getQuizById } from "@/app/dashboard/quizzes/[id]/actions";
-import ButtonStartQuiz from "./ButtonStartQuiz";
+import ButtonStartQuiz from "./quizId/ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
-import FavoriteQuizButton from "./FavoriteQuizButton";
+import FavoriteQuizButton from "./quizId/FavoriteQuizButton";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import LikeQuizButton from "./LikeQuizButton";
+import LikeQuizButton from "./quizId/LikeQuizButton";
 import { ThumbsDown } from "lucide-react";
 import UnLikeQuizButton from "./UnLikeQuizButton";
+import Actions from "./quizId/Actions";
 
 interface QuizProps {
   id: string;
@@ -18,6 +19,7 @@ interface QuizProps {
 
 const QuizIdCard = async ({ id }: QuizProps) => {
   const quiz = await getQuizById(id);
+  const user = await useCurrentUser();
 
   return (
     <>
@@ -53,6 +55,7 @@ const QuizIdCard = async ({ id }: QuizProps) => {
             <div className="flex items-center justify-between">
               <h2>Mais informações (DESCRIÇÃO)</h2>
             </div>
+            {user && <Actions quiz={quiz} userId={user.id}/> }
           </div>
         </div>
         <div className="flex flex-col gap-1">
