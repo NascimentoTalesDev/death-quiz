@@ -1,6 +1,7 @@
 "use server"
 
 import { baseUrl } from "@/utils/base-url"
+import { revalidatePath } from "next/cache";
 
 export async function getQuizById(id: string){
     
@@ -26,6 +27,7 @@ export async function favoriteQuiz(quizId: number, userId: number){
             'API-Key': process.env.DATA_API_KEY!,
         },
     })
+    revalidatePath(`/dashboard/quizzes/${quizId}`)
     const favoriteUpdated = await res.json()    
     return favoriteUpdated   
 }
@@ -39,6 +41,7 @@ export async function likeQuiz(quizId: number, userId: number){
             'API-Key': process.env.DATA_API_KEY!,
         },
     })
+    revalidatePath(`/dashboard/quizzes/${quizId}`)
     const quizUpdated = await res.json()    
     return quizUpdated   
 }
@@ -52,6 +55,7 @@ export async function unLikeQuiz(quizId: number, userId: number){
             'API-Key': process.env.DATA_API_KEY!,
         },
     })
+    revalidatePath(`/dashboard/quizzes/${quizId}`)
     const quizUpdated = await res.json()    
     return quizUpdated   
 }

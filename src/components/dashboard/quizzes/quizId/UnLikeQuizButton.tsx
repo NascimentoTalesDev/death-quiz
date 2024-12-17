@@ -7,16 +7,16 @@ import toast from "react-hot-toast";
 import { ThumbsDown } from "lucide-react";
 
 interface UnLikeQuizButtonProps {
-  user: User;
+  userId: number;
   quiz: Quiz & { unLiked: UnLikedQuizzes[] };
 }
 
-const UnLikeQuizButton = ({ quiz, user }: UnLikeQuizButtonProps) => {
+const UnLikeQuizButton = ({ quiz, userId }: UnLikeQuizButtonProps) => {
   const [isUnLiked, setIsUnLiked] = useState<boolean>(false);
 
   const toggleUnLikeQuiz = async () => {
     try {
-      let res = await unLikeQuiz(quiz.id, user.id);
+      let res = await unLikeQuiz(quiz.id, userId);
       toast.success("Não gostei atualizado");
       setIsUnLiked(res)
     } catch (error) {
@@ -26,11 +26,11 @@ const UnLikeQuizButton = ({ quiz, user }: UnLikeQuizButtonProps) => {
 
   useEffect(() => {
     const checkIsUnLiked = () => {
-      const isUnLiked = quiz?.unLiked?.some((like) => like.userId === user.id);
+      const isUnLiked = quiz?.unLiked?.some((like) => like.userId === userId);
       setIsUnLiked(isUnLiked);
     };
     checkIsUnLiked();
-  }, [quiz.unLiked, user.id]);
+  }, [quiz.unLiked, userId]);
 
   return (
     <div title="Não gostei">

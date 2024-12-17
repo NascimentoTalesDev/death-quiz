@@ -7,16 +7,16 @@ import toast from "react-hot-toast";
 import { ThumbsUp } from "lucide-react";
 
 interface LikeQuizButtonProps {
-  user: User;
+  userId: number;
   quiz: Quiz & { liked: LikedQuizzes[] };
 }
 
-const LikeQuizButton = ({ quiz, user }: LikeQuizButtonProps) => {
+const LikeQuizButton = ({ quiz, userId }: LikeQuizButtonProps) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
   const toggleLikeQuiz = async () => {
     try {
-      let res = await likeQuiz(quiz.id, user.id);
+      let res = await likeQuiz(quiz.id, userId);
       toast.success("Gostei atualizado");
       setIsLiked(res)
     } catch (error) {
@@ -26,11 +26,11 @@ const LikeQuizButton = ({ quiz, user }: LikeQuizButtonProps) => {
 
   useEffect(() => {
     const checkIsLiked = () => {
-      const isLiked = quiz?.liked?.some((like) => like.userId === user.id);
+      const isLiked = quiz?.liked?.some((like) => like.userId === userId);
       setIsLiked(isLiked);
     };
     checkIsLiked();
-  }, [quiz.liked, user.id]);
+  }, [quiz.liked, userId]);
 
   return (
     <div title="Gostei">

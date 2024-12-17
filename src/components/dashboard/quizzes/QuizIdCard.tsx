@@ -10,7 +10,7 @@ import FavoriteQuizButton from "./quizId/FavoriteQuizButton";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import LikeQuizButton from "./quizId/LikeQuizButton";
 import { ThumbsDown } from "lucide-react";
-import UnLikeQuizButton from "./UnLikeQuizButton";
+import UnLikeQuizButton from "./quizId/UnLikeQuizButton";
 import Actions from "./quizId/Actions";
 
 interface QuizProps {
@@ -51,11 +51,13 @@ const QuizIdCard = async ({ id }: QuizProps) => {
               </div>
             </div>
           </Card>
-          <div className="descricao">
+          <div className="descricao flex justify-between items-center">
             <div className="flex items-center justify-between">
               <h2>Mais informações (DESCRIÇÃO)</h2>
             </div>
-            {user && <Actions quiz={quiz} userId={userId} /> }
+            <div>
+              {user && <Actions quiz={quiz} userId={userId} /> }
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-1">

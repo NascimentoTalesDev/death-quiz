@@ -24,7 +24,7 @@ const FavoriteQuizButton = ({ quiz, userId }: FavoriteQuizButtonProps) => {
       }
       setIsFavorite(res)
     } catch (error) {
-      toast.error("Error ao atualizar");
+      toast.error("Erro ao atualizar");
     }
   };
 
