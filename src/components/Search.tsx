@@ -9,7 +9,8 @@ export function Search() {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
-  const [placeholder, setPlaceholder] = useState<string>('')
+  const [placeholder, setPlaceholder] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
@@ -24,10 +25,9 @@ export function Search() {
   }, 300);
   
   useEffect(() => {
-    
-    setPlaceholder(pathname)
-    
-  }, [pathname])
+    setPlaceholder(pathname);
+    setSearchTerm(searchParams.get("query")?.toString() || '');
+  }, [pathname, searchParams]);
   
   return (
     <div className="w-full">
@@ -35,8 +35,11 @@ export function Search() {
         type="text"
         placeholder={checkPathnameChangePlaceholder(placeholder)}
         className="w-full"
-        onChange={(e) => handleSearch(e.target.value)}
-        defaultValue={searchParams.get("query")?.toString()}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+          handleSearch(e.target.value);
+        }}
+        value={searchTerm}
       />
     </div>
   );
