@@ -20,7 +20,7 @@ const QuestionsPage = async ({ params }: { params: { id: string } }) => {
       {params.id && (
         <>
           <Back />
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {quiz?.questions.length > 0 &&
               quiz?.questions.map((question) => (
                 <QuestionIdForm
