@@ -1,5 +1,6 @@
 "use client"
 import { deleteQuiz } from '@/app/admin/dashboard/quizzes/[id]/actions';
+import { deleteImage } from '@/app/admin/dashboard/quizzes/new-quiz/actions';
 import { Button } from '@/components/ui/button'
 import { Quiz } from '@prisma/client';
 import { SquarePen, Trash } from 'lucide-react'
@@ -26,7 +27,8 @@ const Actions: React.FC<ActionsProps> = ({ quiz, swal }) => {
       reverseButtons: true,
     }).then(async (result: { isConfirmed: boolean }) => {
       if (result.isConfirmed) {
-        const res = await deleteQuiz(quiz?.id)
+        await deleteQuiz(quiz?.id)
+        await deleteImage(quiz.image)
         toast.success("Quiz Excluido com sucesso!")
       }
     }).catch((error: unknown) => {

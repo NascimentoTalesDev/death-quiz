@@ -41,6 +41,7 @@ const QuestionIdForm = ({ question, answers }: QuestionIdFormProps) => {
     );
 
     const [isSaving, setIsSaving] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     const [correctAnswerNumber, setCorrectAnswerNumber] = useState<number | null>(
         correctAnswerIndex !== -1 ? correctAnswerIndex : null
     );
@@ -93,6 +94,7 @@ const QuestionIdForm = ({ question, answers }: QuestionIdFormProps) => {
     };
 
     const removeQuestion = async() => {
+        setIsDeleting(true);
         try {
             if (question.quizId && question.id) {
                 await deleteQuestion(question.quizId, question.id)
@@ -101,7 +103,7 @@ const QuestionIdForm = ({ question, answers }: QuestionIdFormProps) => {
         } catch (error) {
             toast.error("Ocorreu um erro inesperado");
         }
-        setIsSaving(false);
+        setIsDeleting(false);
     }
 
     const addAnswers = () => {
@@ -204,7 +206,7 @@ const QuestionIdForm = ({ question, answers }: QuestionIdFormProps) => {
                             className="w-full"
                             type={"submit"}
                             variant={"default"}
-                            disabled={!isValid || isSubmitting || isSaving}
+                            disabled={!isValid || isSubmitting || isSaving || isDeleting}
                         >
                             {isSaving ? <Loader className="animate-spin" /> : "Salvar"}
                         </Button>
@@ -213,9 +215,9 @@ const QuestionIdForm = ({ question, answers }: QuestionIdFormProps) => {
                             className="w-full"
                             type={"button"}
                             variant={"destructive"}
-                            disabled={!isValid || isSubmitting || isSaving}
+                            disabled={!isValid || isSubmitting || isSaving || isDeleting}
                         >
-                            {isSaving ? <Loader className="animate-spin" /> : "Excluir"}
+                            {isDeleting ? <Loader className="animate-spin" /> : "Excluir"}
                         </Button>
                     </div>
                 </form>
