@@ -8,13 +8,14 @@ import { deleteImage, upload } from "@/app/admin/dashboard/quizzes/new-quiz/acti
 import { Button } from "./ui/button";
 
 interface UploadFilesProps {
+    img?: string;
     onUploadComplete: (ev: string) => void
 }
 
-const UploadFiles = ({ onUploadComplete }: UploadFilesProps) => {
+const UploadFiles = ({ onUploadComplete, img }: UploadFilesProps) => {
     const [isUploading, setIsUploading] = useState(false)
-    const [image, setImage] = useState(null)
-
+    const [image, setImage] = useState(img ? img : null)
+    
     async function uploadImages(ev: React.ChangeEvent<HTMLInputElement>) {
         try {
             setIsUploading(true)

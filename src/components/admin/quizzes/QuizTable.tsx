@@ -8,10 +8,12 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { Favorite, Quiz } from '@prisma/client'
+import { Favorite, Question, Quiz } from '@prisma/client'
+import Image from 'next/image';
+import Actions from './quizId/Actions';
 
 interface QuizTableProps {
-    allQuizzes: (Quiz & { favorites: Favorite[] })[];
+    allQuizzes: (Quiz & { questions: Question[] ,favorites: Favorite[] })[];
 }
 
 export const QuizTable = ({ allQuizzes }: QuizTableProps) => {
@@ -20,22 +22,29 @@ export const QuizTable = ({ allQuizzes }: QuizTableProps) => {
             <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">Imagem</TableHead>
+                    <TableHead className="w-[80px]">Imagem</TableHead>
                     <TableHead>Título</TableHead>
-                    <TableHead>Publicado</TableHead>
-                    <TableHead>Favoritado</TableHead>
+                    <TableHead className='text-center w-fit'>Qtd. Perguntas</TableHead>
+                    <TableHead className='text-center w-fit'>Publicado</TableHead>
+                    <TableHead className='text-center w-fit'>Favoritado</TableHead>
                     <TableHead className="text-right">Edit</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {allQuizzes.length > 0 && allQuizzes.map(quiz => (
-                    <TableRow key={quiz.id}>
-
-                        <TableCell className="font-medium">INV001</TableCell>
-                        <TableCell>{quiz.title}</TableCell>
-                        <TableCell>{quiz.isPublished}</TableCell>
-                        <TableCell>{quiz.favorites.length}</TableCell>
-                        <TableCell className="text-right">$250.00</TableCell>
+                    <TableRow key={quiz?.id}>
+                        <TableCell className="font-medium py-2">
+                            <div className='relative rounded-md border-2 border-primary overflow-hidden w-[100px] h-[60px]'>
+                                <Image src={quiz?.image} alt='' objectFit='cover' fill />
+                            </div>
+                        </TableCell>
+                        <TableCell>{quiz?.title}</TableCell>
+                        <TableCell className='text-center'>{quiz?.questions?.length}</TableCell>
+                        <TableCell className='text-center'>{quiz?.isPublished ? "Sim" : "Não" }</TableCell>
+                        <TableCell className='text-center'>{quiz?.favorites?.length}</TableCell>
+                        <TableCell className="text-right">
+                            <Actions quiz={quiz} />
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>

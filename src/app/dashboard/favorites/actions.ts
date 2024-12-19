@@ -24,7 +24,6 @@ export async function searchFavorites(query: string, userId: number){
         },
     })
     if (res.ok) {
-        // revalidatePath('/dashboard/quizzes')
         const search = await res.json()                   
         return search
     }

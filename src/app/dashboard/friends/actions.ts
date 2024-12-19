@@ -1,23 +1,22 @@
 "use server"
 
 import { baseUrl } from "@/utils/base-url"
-import { revalidatePath } from "next/cache"
 
-export async function getAllQuizzes(){
-    const res = await fetch(`${baseUrl}/quizzes`, {
+export async function getAllFriends(userId: number,){        
+    const res = await fetch(`${baseUrl}/users/friends?userId=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'API-Key': process.env.DATA_API_KEY!,
         },
     })
-    revalidatePath('/dashboard/quizzes')
-    const quizzes = await res.json()    
-    return quizzes
+
+    const friends = await res.json()    
+    return friends
 }
 
-export async function searchQuizzes(query: string){
-    const res = await fetch(`${baseUrl}/quizzes/results?search_query=${query}`, {
+export async function searchFriends(query: string){        
+    const res = await fetch(`${baseUrl}/users/friends/results?search_query=${query}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -28,5 +27,5 @@ export async function searchQuizzes(query: string){
         const search = await res.json()                   
         return search
     }
-    return
+    return []
 }

@@ -113,7 +113,7 @@ const QuestionsForm = ({ quizId }: QuestionsFormProps) => {
                         name="question"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Pergunta:</FormLabel>
+                                <FormLabel>Nova Pergunta:</FormLabel>
                                 <FormControl>
                                     <Input
                                         type="text"

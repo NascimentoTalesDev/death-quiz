@@ -19,6 +19,21 @@ export async function createQuiz(values: Quiz){
   return quizzes
 }
 
+export async function updateQuiz(id: number, values: Quiz){
+  const res = await fetch(`${baseUrl}/quizzes/${id}`, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+          'API-Key': process.env.DATA_API_KEY!,
+      },
+      body: JSON.stringify(values)
+  })
+  revalidatePath('/admin/dashboard/quizzes')
+  revalidatePath('/dashboard/quizzes')
+  const quizUpdated = await res.json()    
+  return quizUpdated
+}
+
 export default async function getAllQuizzesAmin(){
   const res = await fetch(`${baseUrl}/quizzes/admin`, {
       method: 'GET',
@@ -29,7 +44,6 @@ export default async function getAllQuizzesAmin(){
       },
   })
   const quizzes = await res.json()    
-
   return quizzes
 }
 

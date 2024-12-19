@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
-import { createQuiz, upload } from "@/app/admin/dashboard/quizzes/new-quiz/actions";
+import { createQuiz, updateQuiz, upload } from "@/app/admin/dashboard/quizzes/new-quiz/actions";
 import UploadFiles from "@/components/UploadFiles";
 import { Quiz } from "@prisma/client";
 
@@ -37,7 +37,11 @@ const formSchema = z.object({
     }),
 });
 
-const QuizForm = () => {
+interface QuizFormProps {
+    quiz?: Quiz;
+}
+
+const QuizForm = ({ quiz }: QuizFormProps) => {
     const router = useRouter()
     const [isSaving, setIsSaving] = useState(false)
     const [foto, setFoto] = useState<string>()
@@ -45,8 +49,8 @@ const QuizForm = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            title: '',
-            image: '',
+            title: quiz ? quiz.title : '',
+            image: quiz ? quiz.image : '',
         },
     });
 
@@ -64,15 +68,27 @@ const QuizForm = () => {
             ...values,
             image: foto
         }
-        
+
         try {
-            const quiz : Quiz = await createQuiz(updatedValues as Quiz)
-            router.push(`/admin/dashboard/quizzes/new-quiz/${quiz.id}/questions`)
-            toast.success("Quiz criado com sucesso")
+            if (quiz) {
+                const res = await updateQuiz(quiz.id, updatedValues as Quiz)
+                router.push(`/admin/dashboard/quizzes/${res.id}/questions`)
+                toast.success("Quiz atualizado com sucesso")
+            } else {
+                const quiz: Quiz = await createQuiz(updatedValues as Quiz)
+                router.push(`/admin/dashboard/quizzes/new-quiz/${quiz.id}/questions`)
+                toast.success("Quiz criado com sucesso")
+            }
         } catch (error) {
             toast.error("Ocorreu um erro inesperado")
         }
         setIsSaving(false)
+    };
+
+    const next = async () => {
+        if (quiz?.id) {
+            router.push(`/admin/dashboard/quizzes/${quiz.id}/questions`)
+        }
     };
 
     return (
@@ -108,21 +124,38 @@ const QuizForm = () => {
                                 <FormLabel>Imagem:</FormLabel>
                                 <FormControl>
                                     <div {...field} className="border aspect-video mt-3 w-[280px] rounded-md overflow-hidden">
-                                        <UploadFiles  onUploadComplete={onUploadComplete} />
+                                        <UploadFiles onUploadComplete={onUploadComplete} img={quiz?.image} />
                                     </div>
                                 </FormControl>
                                 <FormMessage className="text-[12px]" />
                             </FormItem>
                         )}
                     />
-                    <div className="my-3">
+                    <div className="flex gap-2 my-3">
                         <Button
                             className="w-full"
                             type={"submit"}
                             variant={"default"}
                             disabled={!isValid || isSubmitting || isSaving}
                         >
-                            {isSaving ? <Loader className="animate-spin" /> : "Salvar"}
+                            {quiz ?
+                                <>
+                                    {isSaving ? <Loader className="animate-spin" /> : "Salvar e Próximo"}
+                                </>
+                                :
+                                <>
+                                    {isSaving ? <Loader className="animate-spin" /> : "Salvar"}
+                                </>
+                            }
+                        </Button>
+                        <Button
+                            onClick={next}
+                            className="w-full"
+                            type={"button"}
+                            variant={"default"}
+                            disabled={!isValid || isSubmitting || isSaving}
+                        >
+                            Próximo
                         </Button>
                     </div>
                 </form>
