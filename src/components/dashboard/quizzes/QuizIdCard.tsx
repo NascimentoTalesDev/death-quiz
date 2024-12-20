@@ -1,16 +1,11 @@
 import React from "react";
 import { Card, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Back from "../Back";
 import { getQuizById } from "@/app/dashboard/quizzes/[id]/actions";
 import ButtonStartQuiz from "./quizId/ButtonStartQuiz";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
-import FavoriteQuizButton from "./quizId/FavoriteQuizButton";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import LikeQuizButton from "./quizId/LikeQuizButton";
-import { ThumbsDown } from "lucide-react";
-import UnLikeQuizButton from "./quizId/UnLikeQuizButton";
 import Actions from "./quizId/Actions";
 
 interface QuizProps {

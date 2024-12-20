@@ -14,6 +14,6 @@ export const GoogleAuth = () => {
     setIsLogin(false)
   }
   return (
-    <Button onClick={login} variant={"default"}><GoogleIcon /><span className='ml-2'>{isLogin ? "Aquarde..." : "GoogleAuth"}</span></Button>
+    <Button onClick={login} variant={"default"}><GoogleIcon /><span className='ml-2'>{isLogin ? "Aquarde..." : "Entrar com Google"}</span></Button>
   )
 }

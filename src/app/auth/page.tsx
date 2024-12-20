@@ -15,7 +15,6 @@ const AuthPage = () => {
               <Auth />
           </div>
         </div>
-  
     </div>
   )
 }

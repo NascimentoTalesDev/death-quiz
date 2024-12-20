@@ -6,9 +6,10 @@ import { GameController } from "@/core/controllers/GameController";
 import { useConfetti } from "@/hooks/useConfetti";
 import { useQuestionModal } from "@/hooks/useQuestionModal";
 import formatFirstWordToUpperCase from "@/lib/formatFirstWordToUpperCase";
+import { Answer } from "@prisma/client";
 import { X } from "lucide-react";
 import Image from "next/image";
-import {  useState } from "react";
+import {  useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 const QuestionModalProvider = () => {
@@ -16,13 +17,34 @@ const QuestionModalProvider = () => {
   const questionModal = useQuestionModal();
   const quiz = questionModal?.quiz;
   const gameController: GameController = questionModal?.gameController;
-
   const [showAnswer, setShowAnswer] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [endGame, setEndGame] = useState(false);
   const [youAreDead, setYouAreDead] = useState(false);
+  
+  const shuffleArray = (array: Answer[]) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
-  const checkAnswer = (answer: string, correctAnswer: string) => {
+  const answers = useMemo(() => {
+    const currentAnswers = quiz?.questions[currentQuestion]?.answers || [];
+    return shuffleArray(currentAnswers);
+  }, [quiz, currentQuestion]);
+  
+  const actualCorrectAnswer = useMemo(() => {
+    return quiz?.questions[currentQuestion]?.correctAnswer
+  }, [quiz, currentQuestion]);
+  
+  const actualQuestion = useMemo(() => {
+    return quiz?.questions[currentQuestion].question
+  }, [quiz, currentQuestion]);
+
+  const checkAnswer = (answer: string, correctAnswer: string) => {    
     let answerConfirmation = gameController.checkAnswer(answer, correctAnswer);
 
     setShowAnswer(true);
@@ -37,7 +59,7 @@ const QuestionModalProvider = () => {
         toast.error("JOGADOR ELIMINADO");
         setYouAreDead(true);
       }
-    }, 1100);
+    }, 2000);
   };
 
   const timeOver = () => {
@@ -117,45 +139,28 @@ const QuestionModalProvider = () => {
             {!endGame ? (
               <div className="flex flex-col">
                 <div className="mb-10 dark:text-background">
-                  <h2>{quiz?.questions[currentQuestion]?.question}</h2>
+                  <h2>{actualQuestion}</h2>
                 </div>
 
                 <div className="flex flex-col gap-4 dark:text-background">
-                  {showAnswer ? (
-                    <>
-                      {quiz?.questions[currentQuestion]?.answers.map(
-                        (item, idx) => (
-                          <Button
-                            value={item?.answer}
-                            variant={"ghost"}
-                            className={`border min-h-[55px] justify-start ${
-                              item?.answer ===
-                              quiz?.questions[currentQuestion]?.correctAnswer
-                                ? "border-green-500"
-                                : "border-red-500"
-                            }`}
-                            key={idx}
-                          >
-                            {formatFirstWordToUpperCase(item?.answer)}
-                          </Button>
-                        )
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      {quiz?.questions[currentQuestion]?.answers.map(
+                <>
+                      {answers.map(
                         (item, idx) => (
                           <Button
                             onClick={() =>
                               checkAnswer(
                                 item?.answer,
-                                quiz?.questions[currentQuestion]?.correctAnswer
+                                actualCorrectAnswer as string
                               )
                             }
                             value={item.answer}
                             variant={"ghost"}
-                            className={`border border-gray-300 min-h-[55px] justify-start ${
-                              showAnswer ? "border-red-500" : ""
+                            className={`border text-start text-wrap border-gray-300 h-fit min-h-[55px] justify-start ${
+                              showAnswer && (
+                                actualCorrectAnswer === item?.answer
+                                ? "border-green-500 hover:bg-hover:bg-green-100 bg-green-200"
+                                : "border-red-500 hover:bg-red-100 bg-red-200"
+                              )
                             }`}
                             key={idx}
                           >
@@ -164,7 +169,6 @@ const QuestionModalProvider = () => {
                         )
                       )}
                     </>
-                  )}
                 </div>
               </div>
             ) : (
